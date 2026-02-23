@@ -76,7 +76,7 @@ const Navbar = ({ user, navItems = [] }: { user: IUser; navItems?: NavMenu[] }) 
         <div className="hidden items-center gap-1 rounded-full border border-border bg-muted/50 px-2 py-1.5 shadow-sm backdrop-blur-sm lg:flex">
           {navItems.map((item) => {
             const isActive = active === item.href;
-            const hasSubItems = !!item.subItems;
+            const hasSubItems = !!item.subItems && item.subItems.length > 0;
 
             return (
               <div
