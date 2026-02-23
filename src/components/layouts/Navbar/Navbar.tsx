@@ -17,7 +17,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { NavMenu } from './nav-menu';
 import { ShoppingCart, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import UserAvatar from './NavUser';
+import HeaderUser from '../shared/HeaderUser';
 import PortalButton from './PortalButton';
 import NavSearch from './NavSearch';
 
@@ -124,7 +124,7 @@ const Navbar = ({ user, navItems = [] }: { user: IUser; navItems?: NavMenu[] }) 
             )}
           </Link>
           <div className="h-6 w-px bg-border" />
-          {user ? <UserAvatar user={user} /> : <PortalButton />}
+          {user ? <HeaderUser user={user} /> : <PortalButton />}
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">

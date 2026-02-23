@@ -1,12 +1,5 @@
 import { MenuGroup } from '@/types/admin-menu';
-import {
-  Globe,
-  LayoutDashboard,
-  Package,
-  Settings,
-  ShoppingBag,
-  User,
-} from 'lucide-react';
+import { Globe, LayoutDashboard, Package, ShoppingBag } from 'lucide-react';
 
 const userSidebarMenu: MenuGroup[] = [
   {
@@ -21,13 +14,6 @@ const userSidebarMenu: MenuGroup[] = [
     menu: [
       { name: 'My Orders', url: '/user/orders', icon: ShoppingBag },
       { name: 'Products', url: '/products', icon: Package },
-    ],
-  },
-  {
-    title: 'Account',
-    menu: [
-      { name: 'Profile', url: '/settings/profile', icon: User },
-      { name: 'Settings', url: '/settings/appearance', icon: Settings },
     ],
   },
 ];

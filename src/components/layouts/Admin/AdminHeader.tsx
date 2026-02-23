@@ -6,8 +6,10 @@ import { getAdminStats } from '@/services/stats/stats';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Separator } from '@/components/ui/separator';
 import DashboardBreadcrumb from './DashboardBreadcrumb ';
+import HeaderUser from '../shared/HeaderUser';
+import { IUser } from '@/types';
 
-const AdminHeader = () => {
+const AdminHeader = ({ user }: { user: IUser }) => {
     const [pendingOrders, setPendingOrders] = useState(0);
 
     useEffect(() => {
@@ -68,6 +70,9 @@ const AdminHeader = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className="h-6 w-px bg-border mx-1" />
+                <HeaderUser user={user} portalType="admin" />
             </div>
         </header>
     );

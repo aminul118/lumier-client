@@ -2,6 +2,7 @@ import { AdminSidebarSkeleton } from '@/components/layouts/Admin/AdminSidebarSke
 import DashboardBreadcrumb from '@/components/layouts/Admin/DashboardBreadcrumb ';
 import AdminSidebar from '@/components/layouts/Admin/admin-sidebar';
 import AdminHeader from '@/components/layouts/Admin/AdminHeader';
+import { getMe } from '@/services/user/users';
 import {
   SidebarInset,
   SidebarProvider,
@@ -10,15 +11,16 @@ import { Children } from '@/types';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
-const AdminLayout = ({ children }: Children) => {
+const AdminLayout = async ({ children }: Children) => {
+  const { data: user } = await getMe();
   return (
     <SidebarProvider>
       {/* Sidebar */}
       <Suspense fallback={<AdminSidebarSkeleton />}>
-        <AdminSidebar />
+        <AdminSidebar user={user} />
       </Suspense>
       <SidebarInset>
-        <AdminHeader />
+        <AdminHeader user={user as any} />
         <>{children}</>
       </SidebarInset>
     </SidebarProvider>

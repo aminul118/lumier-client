@@ -8,16 +8,18 @@ import { Children } from '@/types';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { AdminSidebarSkeleton } from '@/components/layouts/Admin/AdminSidebarSkeleton';
+import { getMe } from '@/services/user/users';
 
-const UserLayout = ({ children }: Children) => {
+const UserLayout = async ({ children }: Children) => {
+    const { data: user } = await getMe();
     return (
         <SidebarProvider>
             {/* User Sidebar */}
             <Suspense fallback={<AdminSidebarSkeleton />}>
-                <UserSidebar />
+                <UserSidebar user={user} />
             </Suspense>
             <SidebarInset>
-                <UserHeader />
+                <UserHeader user={user as any} />
                 <>{children}</>
             </SidebarInset>
         </SidebarProvider>

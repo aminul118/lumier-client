@@ -5,8 +5,10 @@ import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import HeaderUser from '../shared/HeaderUser';
+import { IUser } from '@/types';
 
-const UserHeader = () => {
+const UserHeader = ({ user }: { user: IUser }) => {
     const { cart } = useCart();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -31,6 +33,9 @@ const UserHeader = () => {
                         </span>
                     )}
                 </Link>
+
+                <div className="h-6 w-px bg-border mx-1" />
+                <HeaderUser user={user} portalType="user" />
             </div>
         </header>
     );

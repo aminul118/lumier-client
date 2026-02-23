@@ -10,10 +10,9 @@ import { getMe } from '@/services/user/users';
 import Link from 'next/link';
 import Logo from '../../../assets/Logo';
 import Menu from './Menu';
-import FooterUser from './footer-user';
+import { IUser } from '@/types';
 
-const AdminSidebar = async () => {
-  const { data } = await getMe();
+const AdminSidebar = ({ user }: { user: IUser }) => {
   return (
     <Sidebar collapsible="icon">
       {/* Header */}
@@ -25,13 +24,8 @@ const AdminSidebar = async () => {
       <Separator />
       <SidebarContent>
         {/* Sidebar Menu — passes user role for dynamic filtering */}
-        <Menu role={data?.role} />
+        <Menu role={user?.role} />
       </SidebarContent>
-      {/* Footer */}
-      <SidebarFooter className="py-6">
-        <Separator className="mb-2" />
-        <FooterUser user={data} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
