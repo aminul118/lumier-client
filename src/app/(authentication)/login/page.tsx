@@ -24,6 +24,15 @@ const LoginPage = () => {
               </div>
               {/* Form Section */}
               <LoginForm />
+
+              <div className="mt-4 text-center text-sm">
+                Don&apos;t have an account?
+                <Link href="/register">
+                  <button className="p-0 pl-1 text-blue-600 hover:underline font-medium">
+                    Create one
+                  </button>
+                </Link>
+              </div>
             </div>
 
             {/* Image Section */}
