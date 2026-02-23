@@ -20,6 +20,7 @@ import {
 import { IUser } from '@/types';
 import { Settings } from 'lucide-react';
 import Link from 'next/link';
+import ModeToggle from '../ModeToggle';
 
 const FooterUser = ({ user }: { user: IUser }) => {
   const { isMobile } = useSidebar();
@@ -28,11 +29,11 @@ const FooterUser = ({ user }: { user: IUser }) => {
 
   const initials = fullName
     ? fullName
-        .split(' ')
-        .map((word) => word[0])
-        .slice(0, 2)
-        .join('')
-        .toUpperCase()
+      .split(' ')
+      .map((word) => word[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase()
     : 'U';
 
   return (

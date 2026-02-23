@@ -94,28 +94,28 @@ const ShopPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 pt-28 pb-20">
+        <div className="min-h-screen bg-background pt-28 pb-20">
             <div className="container mx-auto px-4">
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
                     <div>
-                        <h1 className="text-4xl font-bold text-white mb-2">Lumiere Shop</h1>
-                        <p className="text-slate-500">Discover excellence in every thread ({filteredProducts.length} items)</p>
+                        <h1 className="text-4xl font-bold text-foreground mb-2">Lumiere Shop</h1>
+                        <p className="text-muted-foreground">Discover excellence in every thread ({filteredProducts.length} items)</p>
                     </div>
 
                     <div className="flex items-center gap-4 w-full md:w-auto">
                         <div className="relative flex-1 md:w-80">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
                             <Input
                                 placeholder="Search products..."
-                                className="pl-12 bg-slate-900 border-white/5 text-white rounded-full py-6 focus:border-blue-500/50"
+                                className="pl-12 bg-card border-border text-foreground rounded-full py-6 focus:border-blue-500/50"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                         <Button
                             variant="outline"
-                            className="lg:hidden rounded-full border-white/5 py-6 px-6"
+                            className="lg:hidden rounded-full border-border py-6 px-6"
                             onClick={() => setIsSidebarOpen(true)}
                         >
                             <SlidersHorizontal size={20} />
@@ -127,7 +127,7 @@ const ShopPage = () => {
                     {/* Sidebar Filters (Desktop) */}
                     <aside className="hidden lg:flex w-64 flex-col gap-10 sticky top-32">
                         <div>
-                            <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Category</h3>
+                            <h3 className="text-foreground font-bold mb-6 text-sm uppercase tracking-widest">Category</h3>
                             <div className="flex flex-col gap-3">
                                 {categories.map((cat) => (
                                     <button
@@ -135,7 +135,7 @@ const ShopPage = () => {
                                         onClick={() => updateFilters('category', cat)}
                                         className={cn(
                                             "text-left transition-colors text-base",
-                                            selectedCategory === cat ? "text-blue-400 font-bold" : "text-slate-400 hover:text-white"
+                                            selectedCategory === cat ? "text-blue-500 font-bold" : "text-muted-foreground hover:text-foreground"
                                         )}
                                     >
                                         {cat}
@@ -145,7 +145,7 @@ const ShopPage = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Colors</h3>
+                            <h3 className="text-foreground font-bold mb-6 text-sm uppercase tracking-widest">Colors</h3>
                             <div className="flex flex-wrap gap-3">
                                 {colors.map((color) => (
                                     <button
@@ -156,8 +156,8 @@ const ShopPage = () => {
                                             );
                                         }}
                                         className={cn(
-                                            "w-8 h-8 rounded-full border border-white/10 transition-transform hover:scale-110",
-                                            selectedColors.includes(color) && "ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-950"
+                                            "w-8 h-8 rounded-full border border-border transition-transform hover:scale-110",
+                                            selectedColors.includes(color) && "ring-2 ring-blue-500 ring-offset-4 ring-offset-background"
                                         )}
                                         style={{ backgroundColor: color.toLowerCase().replace('silk ', '') }}
                                         title={color}
@@ -167,7 +167,7 @@ const ShopPage = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Sizes</h3>
+                            <h3 className="text-foreground font-bold mb-6 text-sm uppercase tracking-widest">Sizes</h3>
                             <div className="grid grid-cols-3 gap-2">
                                 {sizes.map((size) => (
                                     <button
@@ -181,7 +181,7 @@ const ShopPage = () => {
                                             "py-2 rounded-lg border text-sm font-bold transition-all",
                                             selectedSizes.includes(size)
                                                 ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                                : "bg-slate-900 border-white/5 text-slate-400 hover:border-white/20"
+                                                : "bg-card border-border text-muted-foreground hover:border-foreground/20"
                                         )}
                                     >
                                         {size}
@@ -191,24 +191,24 @@ const ShopPage = () => {
                         </div>
 
                         <div>
-                            <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Price Range</h3>
+                            <h3 className="text-foreground font-bold mb-6 text-sm uppercase tracking-widest">Price Range</h3>
                             <input
                                 type="range"
                                 min="50"
                                 max="1000"
                                 value={selectedPrice[1]}
                                 onChange={(e) => setSelectedPrice([selectedPrice[0], parseInt(e.target.value)])}
-                                className="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                                className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer accent-blue-500"
                             />
-                            <div className="flex justify-between mt-3 text-xs font-mono text-slate-500">
+                            <div className="flex justify-between mt-3 text-xs font-mono text-muted-foreground">
                                 <span>$50</span>
-                                <span className="text-blue-400 font-bold">${selectedPrice[1]}</span>
+                                <span className="text-blue-500 font-bold">${selectedPrice[1]}</span>
                             </div>
                         </div>
 
                         <Button
                             variant="ghost"
-                            className="justify-start p-0 text-slate-500 hover:text-white"
+                            className="justify-start p-0 text-muted-foreground hover:text-foreground"
                             onClick={() => {
                                 setSelectedCategory('All');
                                 setSelectedSub('All');
@@ -231,12 +231,12 @@ const ShopPage = () => {
                         ) : (
                             <>
                                 {/* Toolbar */}
-                                <div className="flex justify-between items-center mb-8 pb-8 border-b border-white/5">
+                                <div className="flex justify-between items-center mb-8 pb-8 border-b border-border">
                                     <div className="flex gap-2">
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className={cn("rounded-md", viewMode === 'grid' ? "bg-white/10 text-white" : "text-slate-500")}
+                                            className={cn("rounded-md", viewMode === 'grid' ? "bg-muted text-foreground" : "text-muted-foreground")}
                                             onClick={() => setViewMode('grid')}
                                         >
                                             <LayoutGrid size={18} />
@@ -244,7 +244,7 @@ const ShopPage = () => {
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className={cn("rounded-md", viewMode === 'list' ? "bg-white/10 text-white" : "text-slate-500")}
+                                            className={cn("rounded-md", viewMode === 'list' ? "bg-muted text-foreground" : "text-muted-foreground")}
                                             onClick={() => setViewMode('list')}
                                         >
                                             <List size={18} />
@@ -252,9 +252,9 @@ const ShopPage = () => {
                                     </div>
 
                                     <div className="flex items-center gap-2">
-                                        <span className="text-slate-500 text-sm hidden sm:block">Sort by:</span>
+                                        <span className="text-muted-foreground text-sm hidden sm:block">Sort by:</span>
                                         <select
-                                            className="bg-transparent text-white font-bold text-sm focus:outline-none cursor-pointer"
+                                            className="bg-transparent text-foreground font-bold text-sm focus:outline-none cursor-pointer"
                                             value={sortBy}
                                             onChange={(e) => setSortBy(e.target.value)}
                                         >
@@ -279,7 +279,7 @@ const ShopPage = () => {
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 className={cn(
-                                                    "group bg-slate-900/40 border border-white/5 rounded-3xl overflow-hidden transition-all hover:border-blue-500/20",
+                                                    "group bg-card/40 border border-border rounded-3xl overflow-hidden transition-all hover:border-blue-500/20",
                                                     viewMode === 'list' && "flex flex-col sm:flex-row gap-6 p-4"
                                                 )}
                                             >
@@ -300,22 +300,22 @@ const ShopPage = () => {
 
                                                 <div className="p-6 flex-1 flex flex-col">
                                                     <div className="flex justify-between items-start mb-2">
-                                                        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">{product.subCategory}</span>
-                                                        <div className="flex items-center gap-1 text-xs text-amber-400">
+                                                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{product.subCategory}</span>
+                                                        <div className="flex items-center gap-1 text-xs text-amber-500">
                                                             <Star size={12} fill="currentColor" />
                                                             <span>{product.rating}</span>
                                                         </div>
                                                     </div>
                                                     <Link href={`/products/${product._id}`}>
-                                                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors truncate capitalize">
+                                                        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-blue-500 transition-colors truncate capitalize">
                                                             {product.name}
                                                         </h3>
                                                     </Link>
-                                                    <p className="text-slate-400 text-sm line-clamp-2 mb-6 flex-1">
+                                                    <p className="text-muted-foreground text-sm line-clamp-2 mb-6 flex-1">
                                                         {product.description}
                                                     </p>
                                                     <div className="flex items-center justify-between mt-auto">
-                                                        <span className="text-2xl font-bold text-white">${product.price.toFixed(2)}</span>
+                                                        <span className="text-2xl font-bold text-foreground">${product.price.toFixed(2)}</span>
                                                         <Button
                                                             size="sm"
                                                             onClick={() => {
@@ -333,11 +333,11 @@ const ShopPage = () => {
                                     </div>
                                 ) : (
                                     <div className="py-20 text-center">
-                                        <p className="text-slate-500 text-xl font-medium">No products match your filters.</p>
+                                        <p className="text-muted-foreground text-xl font-medium">No products match your filters.</p>
                                         <Button
                                             variant="link"
                                             onClick={() => router.push('/shop')}
-                                            className="text-blue-400 mt-2"
+                                            className="text-blue-500 mt-2"
                                         >
                                             Reset all filters
                                         </Button>
@@ -357,7 +357,7 @@ const ShopPage = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 lg:hidden"
+                            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 lg:hidden"
                             onClick={() => setIsSidebarOpen(false)}
                         />
                         <motion.aside
@@ -365,17 +365,17 @@ const ShopPage = () => {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-slate-900 z-50 p-8 flex flex-col gap-10 overflow-y-auto lg:hidden"
+                            className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-card z-50 p-8 flex flex-col gap-10 overflow-y-auto lg:hidden"
                         >
                             <div className="flex justify-between items-center">
-                                <h2 className="text-2xl font-bold text-white">Filters</h2>
-                                <button onClick={() => setIsSidebarOpen(false)} className="text-slate-500">
+                                <h2 className="text-2xl font-bold text-foreground">Filters</h2>
+                                <button onClick={() => setIsSidebarOpen(false)} className="text-muted-foreground">
                                     <X size={24} />
                                 </button>
                             </div>
-                            {/* ... (repeat filters here for mobile) */}
+                            {/* Mobile Filters */}
                             <div>
-                                <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Category</h3>
+                                <h3 className="text-foreground font-bold mb-6 text-sm uppercase tracking-widest">Category</h3>
                                 <div className="flex flex-col gap-3">
                                     {categories.map((cat) => (
                                         <button
@@ -386,7 +386,7 @@ const ShopPage = () => {
                                             }}
                                             className={cn(
                                                 "text-left transition-colors text-base",
-                                                selectedCategory === cat ? "text-blue-400 font-bold" : "text-slate-400 hover:text-white"
+                                                selectedCategory === cat ? "text-blue-500 font-bold" : "text-muted-foreground hover:text-foreground"
                                             )}
                                         >
                                             {cat}

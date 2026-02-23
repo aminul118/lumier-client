@@ -20,6 +20,7 @@ import {
 import { IUser } from '@/types';
 import { Settings, User } from 'lucide-react';
 import Link from 'next/link';
+import ModeToggle from '../ModeToggle';
 
 const UserFooter = ({ user }: { user: IUser }) => {
     const { isMobile } = useSidebar();
@@ -100,6 +101,12 @@ const UserFooter = ({ user }: { user: IUser }) => {
                                 </Link>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        {/* Theme toggle */}
+                        <div className="px-2 py-2">
+                            <p className="text-muted-foreground mb-1.5 text-xs font-medium">Theme</p>
+                            <ModeToggle />
+                        </div>
                         <DropdownMenuSeparator />
                         <LogOutDropDown />
                     </DropdownMenuContent>

@@ -1,4 +1,5 @@
 import AminulLogo from '@/components/common/AminulLogo';
+import FooterThemeToggle from './FooterThemeToggle';
 import SocialLinks from '@/components/modules/Public/Home/SocialLinks';
 import Link from 'next/link';
 import { FiMapPin, FiPhone } from 'react-icons/fi';
@@ -130,6 +131,7 @@ const Footer = () => {
             <span className="text-slate-400">Lumiere Fashion</span>. All rights
             reserved.
           </p>
+          <FooterThemeToggle />
           <p className="hidden items-center gap-1.5 text-xs text-slate-500 lg:flex">
             Crafted with
             <span className="inline-block animate-pulse text-red-400">♥</span>

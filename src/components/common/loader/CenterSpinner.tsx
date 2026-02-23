@@ -24,7 +24,7 @@ const CenterSpinner = ({ className }: Props) => {
         <div className="absolute h-16 w-16 animate-pulse rounded-full bg-blue-500/20 blur-xl" />
 
         {/* Logo in Center */}
-        <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-slate-900 shadow-2xl">
+        <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-card shadow-2xl">
           <Image
             src={icons.logo}
             height={32}

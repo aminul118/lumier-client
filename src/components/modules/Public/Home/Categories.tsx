@@ -33,10 +33,10 @@ const Categories = () => {
     if (loading) return null;
 
     return (
-        <section className="py-24 bg-slate-950">
+        <section className="py-24 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Shop by Category</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Shop by Category</h2>
                     <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full" />
                 </div>
 
@@ -56,11 +56,11 @@ const Categories = () => {
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/20 to-transparent group-hover:via-slate-950/40 transition-all duration-300" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent group-hover:via-black/40 transition-all duration-300" />
 
                             <div className="absolute bottom-0 left-0 right-0 p-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                 <h3 className="text-2xl font-bold mb-2">{category.name}</h3>
-                                <p className="text-slate-300 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <p className="text-white/70 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     Discover our exclusive collection of {category.name.toLowerCase()}
                                 </p>
                                 <Link

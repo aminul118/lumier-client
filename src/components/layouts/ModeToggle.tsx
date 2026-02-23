@@ -1,37 +1,44 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { MoonIcon, SunIcon } from 'lucide-react';
+import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const themes = [
+  { value: 'light', icon: Sun, label: 'Light' },
+  { value: 'dark', icon: Moon, label: 'Dark' },
+  { value: 'system', icon: Monitor, label: 'System' },
+] as const;
 
 const ModeToggle = () => {
-  const id = useId();
-  const [checked, setChecked] = useState<boolean>(true);
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Apply theme when checked changes
-  useEffect(() => {
-    setTheme(checked ? 'dark' : 'light');
-  }, [checked, setTheme]);
+  // Avoid hydration mismatch
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
 
   return (
-    <div className="inline-flex items-center gap-2">
-      <Switch
-        id={id}
-        checked={checked}
-        onCheckedChange={setChecked}
-        aria-label="Toggle switch"
-      />
-      <Label htmlFor={id}>
-        <span className="sr-only">Toggle switch</span>
-        {checked ? (
-          <MoonIcon size={16} aria-hidden="true" />
-        ) : (
-          <SunIcon size={16} aria-hidden="true" />
-        )}
-      </Label>
+    <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+      {themes.map(({ value, icon: Icon, label }) => {
+        const isActive = theme === value;
+        return (
+          <button
+            key={value}
+            onClick={() => setTheme(value)}
+            title={label}
+            className={`flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all
+              ${isActive
+                ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
+                : 'text-muted-foreground hover:text-foreground'
+              }`}
+          >
+            <Icon className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 };
