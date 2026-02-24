@@ -14,7 +14,7 @@ const navItems: NavMenu[] = [
   { title: 'Shop', href: '/shop' },
   {
     title: 'Men',
-    href: '/shop?category=Men',
+    href: '/shop/Men',
     subItems: [
       { title: 'Shirts', items: ['Formal', 'Casual', 'Oversized'] },
       { title: 'Pants', items: ['Denim', 'Chinos', 'Cargo'] },
@@ -23,7 +23,7 @@ const navItems: NavMenu[] = [
   },
   {
     title: 'Women',
-    href: '/shop?category=Women',
+    href: '/shop/Women',
     subItems: [
       { title: 'Dresses', items: ['Evening', 'Summer', 'Cocktail'] },
       { title: 'Tops', items: ['Blouses', 'Knitwear', 'Tees'] },
@@ -32,7 +32,7 @@ const navItems: NavMenu[] = [
   },
   {
     title: 'Accessories',
-    href: '/shop?category=Accessories',
+    href: '/shop/Accessories',
     subItems: [
       { title: 'Watches', items: ['Classic', 'Sport', 'Luxury'] },
       { title: 'Bags', items: ['Handbags', 'Backpacks', 'Clutches'] },

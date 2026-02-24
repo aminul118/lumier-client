@@ -190,7 +190,7 @@ const Navbar = ({
                       {sub.items.map((subItem) => (
                         <Link
                           key={subItem}
-                          href={`/shop?category=${hoveredItem}&subCategory=${sub.title}&type=${subItem}`}
+                          href={`/shop/${hoveredItem}/${sub.title}/${subItem}`}
                           className="text-muted-foreground text-base font-medium transition-colors hover:text-blue-500"
                           onClick={() => setHoveredItem(null)}
                         >

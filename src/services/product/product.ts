@@ -74,13 +74,13 @@ const deleteProduct = async (id: string) => {
 
 const getTopRatedProducts = async () => {
   return await serverFetch.get<ApiResponse<IProduct[]>>('/products', {
-    query: { sort: '-rating', limit: '10' },
+    query: { sort: '-rating', limit: '12' },
   });
 };
 
 const getBestSellingProducts = async () => {
   return await serverFetch.get<ApiResponse<IProduct[]>>('/products', {
-    query: { sort: '-soldCount', limit: '10' },
+    query: { sort: '-soldCount', limit: '12' },
   });
 };
 
