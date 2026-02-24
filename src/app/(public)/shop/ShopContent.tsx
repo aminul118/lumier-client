@@ -1,19 +1,28 @@
 'use client';
 
 import AppPagination from '@/components/common/pagination/AppPagination';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useCart } from '@/context/CartContext';
 import { TransitionContext } from '@/context/useTransition';
 import { generateShopPath } from '@/lib/url-slugs';
 import { cn } from '@/lib/utils';
+import { getCategories, ICategory } from '@/services/category/category';
+import { getColors, IColor } from '@/services/color/color';
 import { getProducts, IProduct } from '@/services/product/product';
 import { IMeta } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
+  FilterX,
   LayoutGrid,
   List,
-  Search,
   SlidersHorizontal,
   Star,
   X,
@@ -44,6 +53,8 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
   const [allProducts, setAllProducts] = useState<IProduct[]>([]);
   const [meta, setMeta] = useState<IMeta | null>(null);
   const [loading, setLoading] = useState(true);
+  const [dbColors, setDbColors] = useState<IColor[]>([]);
+  const [dbCategories, setDbCategories] = useState<ICategory[]>([]);
 
   const page = Number(searchParams.get('page')) || 1;
   const limit = 12;
@@ -65,31 +76,6 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
-  const categories = ['All', 'Men', 'Women', 'Accessories'];
-  const colors = [
-    'Black',
-    'Blue',
-    'White',
-    'Beige',
-    'Red',
-    'Emerald',
-    'Gold',
-    'Silver',
-    'Purple',
-    'Orange',
-    'Green',
-    'Indigo',
-    'Violet',
-    'Cyan',
-    'Teal',
-    'Lime',
-    'Yellow',
-    'Amber',
-    'Deep Orange',
-    'Brown',
-    'Grey',
-    'Blue Grey',
-  ];
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   useEffect(() => {
@@ -125,6 +111,23 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
     };
     fetchAll();
   }, [searchParams, page, initialFilters]);
+
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        const [colorRes, catRes] = await Promise.all([
+          getColors({ limit: '100' }),
+          getCategories({ limit: '100' }),
+        ]);
+
+        if (colorRes.data) setDbColors(colorRes.data);
+        if (catRes.data) setDbCategories(catRes.data);
+      } catch (error) {
+        console.error('Failed to fetch filter metadata', error);
+      }
+    };
+    fetchMetadata();
+  }, []);
 
   const updateURL = (newParams: Record<string, string | null>) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -188,7 +191,7 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
     <TransitionContext.Provider value={{ startTransition, isPending }}>
       <div
         className={cn(
-          'bg-background min-h-screen pb-20 transition-opacity',
+          'bg-background mt-12 min-h-screen pb-20 transition-opacity',
           isPending && 'pointer-events-none opacity-50',
         )}
       >
@@ -204,36 +207,65 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                 Discover excellence ({meta?.total || 0} items)
               </p>
             </div>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                updateURL({ q: localSearch });
-              }}
-              className="flex w-full items-center gap-4 md:w-auto"
-            >
-              <div className="relative flex-1 md:w-80">
-                <Search
-                  className="text-muted-foreground absolute top-1/2 left-4 -translate-y-1/2"
-                  size={18}
-                />
-                <Input
-                  placeholder="Search products..."
-                  className="bg-card border-border text-foreground rounded-full py-6 pl-12 focus:border-blue-500/50"
-                  value={localSearch}
-                  onChange={(e) => setLocalSearch(e.target.value)}
-                />
-              </div>
-              <Button
-                type="button"
-                variant="outline"
-                className="border-border rounded-full px-6 py-6 lg:hidden"
-                onClick={() => setIsSidebarOpen(true)}
-              >
-                <SlidersHorizontal size={20} />
-              </Button>
-            </form>
           </div>
+
+          {(selectedCategory !== 'All' ||
+            selectedColors.length > 0 ||
+            selectedSizes.length > 0 ||
+            searchQuery) && (
+            <div className="mb-8 flex flex-wrap items-center gap-2">
+              <span className="text-muted-foreground mr-2 text-xs font-bold tracking-widest uppercase">
+                Active Filters:
+              </span>
+              {selectedCategory !== 'All' && (
+                <Badge
+                  variant="secondary"
+                  className="gap-1 rounded-full bg-blue-500/10 px-3 py-1 pr-1 text-blue-600 dark:text-blue-400"
+                >
+                  {selectedCategory}
+                  <button
+                    onClick={() =>
+                      updateURL({ category: 'All', subCategory: '', type: '' })
+                    }
+                    className="rounded-full p-0.5 hover:bg-blue-500/20"
+                  >
+                    <X size={12} />
+                  </button>
+                </Badge>
+              )}
+              {selectedSizes.map((size) => (
+                <Badge
+                  key={size}
+                  variant="secondary"
+                  className="gap-1 rounded-full px-3 py-1 pr-1 text-xs"
+                >
+                  Size: {size}
+                  <button
+                    onClick={() =>
+                      toggleMultiFilter('sizes', size, selectedSizes)
+                    }
+                    className="rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/10"
+                  >
+                    <X size={12} />
+                  </button>
+                </Badge>
+              ))}
+              {searchQuery && (
+                <Badge
+                  variant="secondary"
+                  className="gap-1 rounded-full px-3 py-1 pr-1"
+                >
+                  "{searchQuery}"
+                  <button
+                    onClick={() => updateURL({ q: null })}
+                    className="rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/10"
+                  >
+                    <X size={12} />
+                  </button>
+                </Badge>
+              )}
+            </div>
+          )}
 
           <div className="flex items-start gap-12">
             <aside className="sticky top-32 hidden w-64 flex-col gap-10 lg:flex">
@@ -241,21 +273,27 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                 <h3 className="text-foreground mb-6 text-sm font-bold tracking-widest uppercase">
                   Category
                 </h3>
-                <div className="flex flex-col gap-3">
-                  {categories.map((cat) => (
+                <div className="flex flex-col gap-1">
+                  {['All', ...dbCategories.map((c) => c.name)].map((cat) => (
                     <button
                       key={cat}
                       onClick={() => {
                         updateURL({ category: cat, subCategory: '', type: '' });
                       }}
                       className={cn(
-                        'text-left text-base transition-colors',
+                        'group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all',
                         selectedCategory === cat
-                          ? 'font-bold text-blue-500'
-                          : 'text-muted-foreground hover:text-foreground',
+                          ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-gray-50 dark:hover:bg-white/5',
                       )}
                     >
                       {cat}
+                      {selectedCategory === cat && (
+                        <motion.div
+                          layoutId="active-cat-pill"
+                          className="h-1.5 w-1.5 rounded-full bg-white"
+                        />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -265,23 +303,29 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                 <h3 className="text-foreground mb-6 text-sm font-bold tracking-widest uppercase">
                   Colors
                 </h3>
-                <div className="flex flex-wrap gap-3">
-                  {colors.slice(0, 12).map((color) => (
+                <div className="grid grid-cols-4 gap-3">
+                  {dbColors.map((color) => (
                     <button
-                      key={color}
+                      key={color.name}
                       onClick={() =>
-                        toggleMultiFilter('color', color, selectedColors)
+                        toggleMultiFilter('color', color.name, selectedColors)
                       }
                       className={cn(
-                        'border-border h-8 w-8 rounded-full border transition-transform hover:scale-110',
-                        selectedColors.includes(color) &&
+                        'group relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-100 transition-all hover:scale-110 dark:border-white/5',
+                        selectedColors.includes(color.name) &&
                           'ring-offset-background ring-2 ring-blue-500 ring-offset-4',
                       )}
                       style={{
-                        backgroundColor: color.toLowerCase().replace(/\s/g, ''),
+                        backgroundColor:
+                          color.hex ||
+                          color.name.toLowerCase().replace(/\s/g, ''),
                       }}
-                      title={color}
-                    />
+                      title={color.name}
+                    >
+                      {selectedColors.includes(color.name) && (
+                        <div className="h-2 w-2 rounded-full bg-white mix-blend-difference shadow-sm" />
+                      )}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -309,14 +353,6 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                   ))}
                 </div>
               </div>
-
-              <Button
-                variant="ghost"
-                className="text-muted-foreground hover:text-foreground justify-start p-0"
-                onClick={() => router.push('/shop')}
-              >
-                Clear all filters
-              </Button>
             </aside>
 
             <main className="flex-1">
@@ -356,20 +392,37 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                       </Button>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <span className="text-muted-foreground hidden text-sm sm:block">
-                        Sort by:
-                      </span>
-                      <select
-                        className="text-foreground cursor-pointer bg-transparent text-sm font-bold focus:outline-none"
-                        value={sortBy}
-                        onChange={(e) => updateURL({ sort: e.target.value })}
+                    <div className="flex items-center gap-4">
+                      <Button
+                        onClick={() => {
+                          router.push('/shop');
+                          setLocalSearch('');
+                        }}
                       >
-                        <option value="Newest">Newest</option>
-                        <option value="price">Price: Low-High</option>
-                        <option value="-price">Price: High-Low</option>
-                        <option value="-rating">Top Rated</option>
-                      </select>
+                        <FilterX size={14} />
+                        Clear Filters
+                      </Button>
+                      <div className="hidden items-center gap-2 sm:flex">
+                        <span className="text-muted-foreground text-xs font-bold tracking-widest uppercase">
+                          Sort By
+                        </span>
+                      </div>
+                      <Select
+                        value={sortBy}
+                        onValueChange={(value) => updateURL({ sort: value })}
+                      >
+                        <SelectTrigger className="bg-card h-10 w-[160px] rounded-xl font-bold">
+                          <SelectValue placeholder="Sort by" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl">
+                          <SelectItem value="Newest">Newest</SelectItem>
+                          <SelectItem value="price">Price: Low-High</SelectItem>
+                          <SelectItem value="-price">
+                            Price: High-Low
+                          </SelectItem>
+                          <SelectItem value="-rating">Top Rated</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
@@ -527,13 +580,13 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                   <X size={24} />
                 </button>
               </div>
-              <div className="space-y-8">
+              <div className="space-y-10">
                 <div>
                   <h3 className="text-foreground mb-6 text-sm font-bold tracking-widest uppercase">
                     Category
                   </h3>
-                  <div className="flex flex-col gap-3">
-                    {categories.map((cat) => (
+                  <div className="flex flex-col gap-2">
+                    {['All', ...dbCategories.map((c) => c.name)].map((cat) => (
                       <button
                         key={cat}
                         onClick={() => {
@@ -545,40 +598,75 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                           setIsSidebarOpen(false);
                         }}
                         className={cn(
-                          'text-left text-base transition-colors',
+                          'group flex items-center justify-between rounded-2xl px-5 py-4 text-base font-bold transition-all',
                           selectedCategory === cat
-                            ? 'font-bold text-blue-500'
-                            : 'text-muted-foreground hover:text-foreground',
+                            ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30'
+                            : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground',
                         )}
                       >
                         {cat}
+                        <SlidersHorizontal size={14} className="opacity-20" />
                       </button>
                     ))}
                   </div>
                 </div>
+
                 <div>
                   <h3 className="text-foreground mb-6 text-sm font-bold tracking-widest uppercase">
                     Colors
                   </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {colors.slice(0, 15).map((color) => (
+                  <div className="grid grid-cols-5 gap-4">
+                    {dbColors.map((color) => (
                       <button
-                        key={color}
-                        onClick={() =>
-                          toggleMultiFilter('color', color, selectedColors)
-                        }
+                        key={color.name}
+                        onClick={() => {
+                          toggleMultiFilter(
+                            'color',
+                            color.name,
+                            selectedColors,
+                          );
+                          setIsSidebarOpen(false);
+                        }}
                         className={cn(
-                          'border-border h-10 w-10 rounded-full border transition-transform',
-                          selectedColors.includes(color) &&
+                          'relative flex aspect-square items-center justify-center rounded-2xl border border-gray-100 transition-transform active:scale-95 dark:border-white/5',
+                          selectedColors.includes(color.name) &&
                             'ring-offset-background ring-2 ring-blue-500 ring-offset-4',
                         )}
                         style={{
-                          backgroundColor: color
-                            .toLowerCase()
-                            .replace(/\s/g, ''),
+                          backgroundColor:
+                            color.hex ||
+                            color.name.toLowerCase().replace(/\s/g, ''),
                         }}
-                        title={color}
-                      />
+                        title={color.name}
+                      >
+                        {selectedColors.includes(color.name) && (
+                          <div className="h-2 w-2 rounded-full bg-white mix-blend-difference" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-foreground mb-6 text-sm font-bold tracking-widest uppercase">
+                    Sizes
+                  </h3>
+                  <div className="grid grid-cols-3 gap-3">
+                    {sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() =>
+                          toggleMultiFilter('sizes', size, selectedSizes)
+                        }
+                        className={cn(
+                          'rounded-2xl border py-4 text-sm font-bold transition-all active:scale-95',
+                          selectedSizes.includes(size)
+                            ? 'border-blue-600 bg-blue-600 text-white shadow-lg'
+                            : 'bg-muted/50 text-muted-foreground border-transparent hover:border-gray-200 dark:hover:border-white/10',
+                        )}
+                      >
+                        {size}
+                      </button>
                     ))}
                   </div>
                 </div>
