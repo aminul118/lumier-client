@@ -1,9 +1,16 @@
 import { normalizeSlug } from '@/lib/url-slugs';
+import { generateCategorizedMeta } from '@/seo/generateDynamicMeta';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ShopContent from '../shop/_components/ShopContent';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  return await generateCategorizedMeta(slug);
 }
 
 const DynamicShopPage = async ({ params }: Props) => {
