@@ -32,6 +32,10 @@ import { z } from 'zod';
 
 const siteSettingSchema = z.object({
   logo: z.any().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  keywords: z.string().optional(),
+  baseImage: z.any().optional(),
   socialLinks: z.array(
     z.object({
       platform: z.string(),
@@ -66,6 +70,10 @@ const SiteSettingsForm = ({ settings }: Props) => {
     resolver: zodResolver(siteSettingSchema) as any,
     defaultValues: {
       logo: settings.logo || '',
+      title: settings.title || '',
+      description: settings.description || '',
+      keywords: settings.keywords || '',
+      baseImage: settings.baseImage || '',
       socialLinks: settings.socialLinks || [
         { platform: 'Facebook', url: '', isActive: true },
         { platform: 'WhatsApp', url: '', isActive: true },
@@ -83,11 +91,20 @@ const SiteSettingsForm = ({ settings }: Props) => {
     const formData = new FormData();
 
     if (values.logo instanceof File) {
-      formData.append('file', values.logo);
+      formData.append('logo', values.logo);
     } else if (typeof values.logo === 'string') {
       formData.append('logo', values.logo);
     }
 
+    if (values.baseImage instanceof File) {
+      formData.append('baseImage', values.baseImage);
+    } else if (typeof values.baseImage === 'string') {
+      formData.append('baseImage', values.baseImage);
+    }
+
+    formData.append('title', values.title || '');
+    formData.append('description', values.description || '');
+    formData.append('keywords', values.keywords || '');
     formData.append('socialLinks', JSON.stringify(values.socialLinks));
 
     await executePost({
@@ -116,6 +133,82 @@ const SiteSettingsForm = ({ settings }: Props) => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Website Logo</FormLabel>
+                <FormControl>
+                  <SingleImageUploader
+                    defaultValue={field.value}
+                    onChange={(file) => field.onChange(file)}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        {/* SEO Configuration Section */}
+        <div className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-6">
+          <h3 className="flex items-center gap-2 text-lg font-medium text-white">
+            <Globe className="h-5 w-5 text-green-400" /> SEO Configuration
+          </h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Site Title (SEO)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="e.g. Lumiere Fashion | Premium Contemporary Clothing"
+                      {...field}
+                      className="bg-slate-900/50"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="keywords"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>SEO Keywords</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="e.g. Fashion, Luxury, Apparel"
+                      {...field}
+                      className="bg-slate-900/50"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>SEO Description</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Enter meta description for search engines..."
+                    {...field}
+                    className="bg-slate-900/50"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="baseImage"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Social Share Image (OG Image)</FormLabel>
                 <FormControl>
                   <SingleImageUploader
                     defaultValue={field.value}

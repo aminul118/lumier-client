@@ -1,5 +1,6 @@
 export interface NavSubItem {
   title: string;
+  href: string;
   items: string[];
 }
 

@@ -6,6 +6,7 @@ import { ApiResponse } from '@/types';
 
 export interface INavSubItem {
   title: string;
+  href: string;
   items: string[];
 }
 

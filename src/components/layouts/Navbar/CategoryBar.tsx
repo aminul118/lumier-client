@@ -116,18 +116,26 @@ const CategoryBar = () => {
                           isCategoryActive &&
                           currentSubCategorySlug === subCategorySlug;
 
+                        const TitleContent = (
+                          <h3
+                            className={cn(
+                              'border-b pb-2 text-[11px] font-black tracking-tighter uppercase transition-colors',
+                              isSubActive
+                                ? 'border-blue-500 text-blue-600 dark:border-blue-400/50 dark:text-blue-400'
+                                : 'border-blue-50 pb-2 text-[11px] font-black tracking-tighter text-blue-600 uppercase dark:border-blue-900/30 dark:text-blue-400',
+                            )}
+                          >
+                            {sub.title}
+                          </h3>
+                        );
+
                         return (
                           <div key={sub.title} className="flex flex-col gap-3">
-                            <h3
-                              className={cn(
-                                'border-b pb-2 text-[11px] font-black tracking-tighter uppercase transition-colors',
-                                isSubActive
-                                  ? 'border-blue-500 text-blue-600 dark:border-blue-400/50 dark:text-blue-400'
-                                  : 'border-blue-50 pb-2 text-[11px] font-black tracking-tighter text-blue-600 uppercase dark:border-blue-900/30 dark:text-blue-400',
-                              )}
-                            >
-                              {sub.title}
-                            </h3>
+                            {sub.href ? (
+                              <Link href={sub.href}>{TitleContent}</Link>
+                            ) : (
+                              TitleContent
+                            )}
                             <div className="flex flex-col gap-2">
                               {sub.items.map((subItem) => {
                                 const itemSlug = toUrlSlug(subItem);
