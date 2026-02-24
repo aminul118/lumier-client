@@ -75,12 +75,15 @@ const generateProducts = (): IProduct[] => {
               'Limited edition collection',
               'Easy care and durable',
             ],
-            colors: [
-              data.colors[i % data.colors.length],
-              data.colors[(i + 1) % data.colors.length],
-            ],
+            color: data.colors[i % data.colors.length],
             sizes: data.sizes,
             featured: Math.random() > 0.8,
+            slug: `${type.toLowerCase()}-${subCategory.toLowerCase()}-${i}-${id}`.replace(
+              /\s+/g,
+              '-',
+            ),
+            stock: Math.floor(Math.random() * 100),
+            buyPrice: Math.floor(Math.random() * (500 - 50 + 1) + 50) * 0.7,
           });
         }
       });

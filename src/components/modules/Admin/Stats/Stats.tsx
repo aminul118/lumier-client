@@ -18,6 +18,26 @@ interface StatsProps {
 }
 
 const Stats = ({ stats }: StatsProps) => {
+  if (!stats) return null;
+
+  // Add defaults to ensure properties exist before calling toLocaleString()
+  const {
+    totalRevenue = 0,
+    totalProfit = 0,
+    totalStockValue = 0,
+    lowStockCount = 0,
+    orderCount = 0,
+    productCount = 0,
+    orderStatusDistribution = { Delivered: 0, Pending: 0, Cancelled: 0 },
+    user = {
+      totalCount: 0,
+      activeCount: 0,
+      inactiveCount: 0,
+      blockedCount: 0,
+      deletedCount: 0,
+    },
+  } = stats;
+
   return (
     <div className="space-y-8">
       {/* E-commerce Overview */}
@@ -35,9 +55,11 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">
-                ${stats.totalRevenue.toLocaleString()}
+                ${totalRevenue.toLocaleString()}
               </div>
-              <p className="text-muted-foreground mt-1 text-xs">Total income from orders</p>
+              <p className="text-muted-foreground mt-1 text-xs">
+                Total income from orders
+              </p>
             </CardContent>
           </Card>
 
@@ -50,9 +72,11 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">
-                ${stats.totalProfit.toLocaleString()}
+                ${totalProfit.toLocaleString()}
               </div>
-              <p className="text-muted-foreground mt-1 text-xs">Revenue - Cost of Goods</p>
+              <p className="text-muted-foreground mt-1 text-xs">
+                Revenue - Cost of Goods
+              </p>
             </CardContent>
           </Card>
 
@@ -64,8 +88,12 @@ const Stats = ({ stats }: StatsProps) => {
               <ShoppingBag className="h-4 w-4 text-purple-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">${stats.totalStockValue.toLocaleString()}</div>
-              <p className="text-muted-foreground mt-1 text-xs">Asset value of stock</p>
+              <div className="text-3xl font-bold">
+                ${totalStockValue.toLocaleString()}
+              </div>
+              <p className="text-muted-foreground mt-1 text-xs">
+                Asset value of stock
+              </p>
             </CardContent>
           </Card>
 
@@ -77,8 +105,10 @@ const Stats = ({ stats }: StatsProps) => {
               <AlertTriangle className="h-4 w-4 text-red-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.lowStockCount}</div>
-              <p className="mt-1 text-xs text-red-500 font-medium">Items needing restock</p>
+              <div className="text-3xl font-bold">{lowStockCount}</div>
+              <p className="mt-1 text-xs font-medium text-red-500">
+                Items needing restock
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -98,8 +128,10 @@ const Stats = ({ stats }: StatsProps) => {
               <Clock className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.orderCount}</div>
-              <p className="text-muted-foreground mt-1 text-xs">Volume of orders</p>
+              <div className="text-3xl font-bold">{orderCount}</div>
+              <p className="text-muted-foreground mt-1 text-xs">
+                Volume of orders
+              </p>
             </CardContent>
           </Card>
 
@@ -111,8 +143,10 @@ const Stats = ({ stats }: StatsProps) => {
               <FileText className="h-4 w-4 text-orange-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{stats.productCount}</div>
-              <p className="text-muted-foreground mt-1 text-xs">Active catalog items</p>
+              <div className="text-3xl font-bold">{productCount}</div>
+              <p className="text-muted-foreground mt-1 text-xs">
+                Active catalog items
+              </p>
             </CardContent>
           </Card>
 
@@ -126,18 +160,20 @@ const Stats = ({ stats }: StatsProps) => {
             <CardContent className="space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-green-500" /> Delivered
+                  <span className="h-2 w-2 rounded-full bg-green-500" />{' '}
+                  Delivered
                 </span>
                 <span className="font-medium">
-                  {stats.orderStatusDistribution.Delivered}
+                  {orderStatusDistribution.Delivered}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-yellow-500" /> Pending
+                  <span className="h-2 w-2 rounded-full bg-yellow-500" />{' '}
+                  Pending
                 </span>
                 <span className="font-medium">
-                  {stats.orderStatusDistribution.Pending}
+                  {orderStatusDistribution.Pending}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
@@ -145,14 +181,13 @@ const Stats = ({ stats }: StatsProps) => {
                   <span className="h-2 w-2 rounded-full bg-red-500" /> Cancelled
                 </span>
                 <span className="font-medium">
-                  {stats.orderStatusDistribution.Cancelled}
+                  {orderStatusDistribution.Cancelled}
                 </span>
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
-
 
       {/* User Detailed Stats */}
       <div className="space-y-4">
@@ -169,7 +204,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-700 dark:text-blue-500">
-                {stats.user.totalCount}
+                {user.totalCount}
               </div>
             </CardContent>
           </Card>
@@ -183,7 +218,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700 dark:text-green-500">
-                {stats.user.activeCount}
+                {user.activeCount}
               </div>
             </CardContent>
           </Card>
@@ -197,7 +232,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-700 dark:text-orange-500">
-                {stats.user.inactiveCount + stats.user.blockedCount}
+                {user.inactiveCount + user.blockedCount}
               </div>
             </CardContent>
           </Card>
@@ -211,7 +246,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-700 dark:text-red-500">
-                {stats.user.deletedCount}
+                {user.deletedCount}
               </div>
             </CardContent>
           </Card>

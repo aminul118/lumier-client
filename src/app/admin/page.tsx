@@ -4,11 +4,13 @@ import { getAdminStats } from '@/services/stats/stats';
 import { getMe } from '@/services/user/users';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const AdminHomePage = async () => {
-  const [{ data: stats }, { data: user }] = await Promise.all([
-    getAdminStats(),
-    getMe(),
-  ]);
+  const [statsRes, userRes] = await Promise.all([getAdminStats(), getMe()]);
+
+  const stats = statsRes?.data;
+  const user = userRes?.data;
 
   return (
     <section className="mx-auto w-11/12 space-y-6">
