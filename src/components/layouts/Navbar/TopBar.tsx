@@ -43,7 +43,7 @@ const links: LinkItem[] = [
 
 const TopBar = () => {
   return (
-    <div className="hidden w-full border-b border-gray-100 bg-white py-2 transition-colors md:block dark:border-white/5 dark:bg-[#0a0a0a]">
+    <div className="dark:bg-background hidden w-full border-b border-gray-100 bg-white py-2 transition-colors md:block dark:border-white/5">
       <div className="container mx-auto flex items-center justify-between px-4 text-[10px] font-bold tracking-wider text-gray-600 uppercase dark:text-gray-400">
         {/* Left Side */}
         <div className="flex items-center gap-2">

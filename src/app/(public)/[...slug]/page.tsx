@@ -1,6 +1,6 @@
 import { normalizeSlug } from '@/lib/url-slugs';
 import { Suspense } from 'react';
-import ShopContent from '../shop/ShopContent';
+import ShopContent from '../shop/_components/ShopContent';
 
 interface Props {
   params: Promise<{ slug: string[] }>;

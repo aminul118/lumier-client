@@ -56,7 +56,7 @@ const CategoryBar = () => {
   }, []);
 
   return (
-    <div className="relative hidden w-full overflow-visible border-b border-gray-100 bg-white transition-colors lg:block dark:border-white/5 dark:bg-[#0a0a0a]">
+    <div className="dark:bg-background relative hidden w-full overflow-visible border-b border-gray-100 bg-white transition-colors lg:block dark:border-white/5">
       <div className="container mx-auto flex items-center justify-between px-4">
         <div className="flex items-center gap-1">
           {/* Category Links */}
@@ -109,7 +109,7 @@ const CategoryBar = () => {
 
                   {/* Mega Menu Dropdown */}
                   {hasSubItems && hoveredItem === item._id && (
-                    <div className="animate-in fade-in slide-in-from-top-2 absolute top-full left-0 z-100 grid w-[500px] grid-cols-2 gap-8 border border-gray-100 bg-white p-6 shadow-2xl duration-200 dark:border-white/5 dark:bg-[#111111]">
+                    <div className="animate-in fade-in slide-in-from-top-2 dark:bg-background absolute top-full left-0 z-100 grid w-[500px] grid-cols-2 gap-8 border border-gray-100 bg-white p-6 shadow-2xl duration-200 dark:border-white/5">
                       {item.subItems?.map((sub) => {
                         const subCategorySlug = toUrlSlug(sub.title);
                         const isSubActive =

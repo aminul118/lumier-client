@@ -8,7 +8,7 @@ import Image from 'next/image';
 const LoginPage = () => {
   return (
     <section className="center">
-      <div className="mx-auto flex w-full max-w-sm items-center justify-center rounded-lg shadow-lg md:max-w-4xl">
+      <div className="mx-auto flex w-full max-w-sm items-center justify-center rounded-lg md:max-w-4xl">
         <Card className="w-full max-w-5xl overflow-hidden p-0">
           <CardContent className="grid p-0 md:grid-cols-2">
             <div className="p-6">
@@ -25,7 +25,7 @@ const LoginPage = () => {
             </div>
 
             {/* Image Section */}
-            <div className="bg-muted relative hidden md:block">
+            <div className="relative hidden md:block">
               <Image
                 className="absolute inset-0 h-full w-full object-cover brightness-[0.5] grayscale dark:brightness-[0.2]"
                 src={images.auth}

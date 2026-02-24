@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import ShopContent from './ShopContent';
+import ShopContent from './_components/ShopContent';
 
 const ShopPage = () => {
   return (
