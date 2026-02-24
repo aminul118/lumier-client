@@ -85,7 +85,16 @@ const NavSearch = () => {
 
   return (
     <>
-      {/* Search trigger: Wide Professional Bar */}
+      {/* Mobile Search Trigger */}
+      <button
+        onClick={() => setOpen(true)}
+        aria-label="Open search"
+        className="flex items-center justify-center rounded-full p-2 text-white hover:bg-white/10 sm:hidden"
+      >
+        <Search size={20} />
+      </button>
+
+      {/* Desktop Search trigger: Wide Professional Bar */}
       <button
         onClick={() => setOpen(true)}
         aria-label="Open search"

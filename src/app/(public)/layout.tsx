@@ -1,5 +1,6 @@
 import Footer from '@/components/layouts/Footer/Footer';
 import ChatFloatingButton from '@/components/layouts/Navbar/ChatFloatingButton';
+import MobileBottomNav from '@/components/layouts/Navbar/MobileBottomNav';
 import Navbar from '@/components/layouts/Navbar/Navbar';
 import { getNavbars } from '@/services/navbar/navbar';
 import { getSiteSettings } from '@/services/settings/settings';
@@ -26,7 +27,7 @@ const RootLayout = async ({ children }: Children) => {
   const sortedNavItems = [...navItems].sort((a, b) => a.order - b.order);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col pb-16 lg:pb-0">
       <Navbar
         user={user as any}
         navItems={sortedNavItems as any}
@@ -34,6 +35,7 @@ const RootLayout = async ({ children }: Children) => {
       />
       <div className="grow pt-[60px] lg:pt-[156px]">{children}</div>
       <ChatFloatingButton user={user as any} />
+      <MobileBottomNav />
       <Footer
         socialLinks={siteSettings?.socialLinks}
         logoUrl={siteSettings?.logo}

@@ -394,13 +394,21 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
 
                     <div className="flex items-center gap-4">
                       <Button
+                        onClick={() => setIsSidebarOpen(true)}
+                        className="lg:hidden"
+                      >
+                        <SlidersHorizontal size={14} />
+                        Filters
+                      </Button>
+                      <Button
+                        variant="outline"
                         onClick={() => {
                           router.push('/shop');
                           setLocalSearch('');
                         }}
                       >
                         <FilterX size={14} />
-                        Clear Filters
+                        Clear
                       </Button>
                       <div className="hidden items-center gap-2 sm:flex">
                         <span className="text-muted-foreground text-xs font-bold tracking-widest uppercase">

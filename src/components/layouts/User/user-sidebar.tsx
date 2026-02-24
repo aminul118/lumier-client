@@ -1,3 +1,4 @@
+import Logo from '@/components/common/Logo';
 import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
@@ -6,18 +7,16 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar';
 import { IUser } from '@/types';
-import Link from 'next/link';
-import Logo from '../../../assets/Logo';
 import Menu from './Menu';
 
-const UserSidebar = ({ user }: { user: IUser }) => {
+const UserSidebar = ({ user, logoUrl }: { user: IUser; logoUrl?: string }) => {
   return (
     <Sidebar collapsible="icon" className="bg-black! text-white!">
       {/* Header */}
       <SidebarHeader>
-        <Link href="/user" className="py-4">
-          <Logo />
-        </Link>
+        <div className="flex items-center gap-2 px-4 py-4">
+          <Logo logoUrl={logoUrl} className="origin-left scale-90" />
+        </div>
       </SidebarHeader>
       <Separator className="bg-white/10" />
       <SidebarContent>
