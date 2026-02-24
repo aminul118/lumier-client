@@ -184,6 +184,17 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
     updateURL({ [key]: updated.length > 0 ? updated.join(',') : null });
   };
 
+  const handleClearAll = () => {
+    updateURL({
+      category: 'All',
+      subCategory: '',
+      type: '',
+      color: null,
+      sizes: null,
+      q: null,
+    });
+  };
+
   return (
     <TransitionContext.Provider value={{ startTransition, isPending }}>
       <div
@@ -194,6 +205,7 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
       >
         <div className="container mx-auto px-4">
           <ShopHeader
+            dbCategories={dbCategories}
             selectedCategory={selectedCategory}
             selectedSubCategory={selectedSubCategory}
             selectedType={selectedType}
@@ -223,8 +235,10 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
             selectedCategory={selectedCategory}
             selectedColors={selectedColors}
             selectedSizes={selectedSizes}
+            selectedQuery={searchParams.get('q') || ''}
             onUpdateURL={updateURL}
             onToggleMultiFilter={toggleMultiFilter}
+            onClearAll={handleClearAll}
           />
 
           <div className="flex items-start gap-12">
@@ -240,6 +254,7 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                 sortBy={sortBy}
                 onUpdateURL={updateURL}
                 onToggleMultiFilter={toggleMultiFilter}
+                showCategory={false}
               />
             </aside>
 

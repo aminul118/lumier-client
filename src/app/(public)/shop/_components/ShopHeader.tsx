@@ -16,10 +16,12 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { ICategory } from '@/services/category/category';
 import { LayoutGrid, List, SlidersHorizontal } from 'lucide-react';
 import { ReactNode } from 'react';
 
 interface ShopHeaderProps {
+  dbCategories: ICategory[];
   selectedCategory: string;
   selectedSubCategory: string;
   selectedType: string;
@@ -33,6 +35,7 @@ interface ShopHeaderProps {
 }
 
 const ShopHeader = ({
+  dbCategories,
   selectedCategory,
   selectedSubCategory,
   selectedType,
@@ -89,6 +92,36 @@ const ShopHeader = ({
             >
               <List size={20} />
             </Button>
+          </div>
+
+          <div className="hidden sm:block">
+            <Select
+              value={selectedCategory}
+              onValueChange={(value) => {
+                onUpdateURL({ category: value, subCategory: '', type: '' });
+              }}
+            >
+              <SelectTrigger className="h-11 w-[160px] rounded-2xl border-none bg-[#151722] px-6 font-bold text-white shadow-2xl ring-offset-0 focus:ring-0">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent className="shadow-3xl rounded-2xl border-white/5 bg-[#151722] text-white">
+                <SelectItem
+                  value="All"
+                  className="font-bold focus:bg-white/10 focus:text-white"
+                >
+                  All Categories
+                </SelectItem>
+                {dbCategories.map((cat) => (
+                  <SelectItem
+                    key={cat._id}
+                    value={cat.name}
+                    className="font-bold focus:bg-white/10 focus:text-white"
+                  >
+                    {cat.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
