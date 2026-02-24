@@ -28,3 +28,7 @@ export const markAsSeen = async (conversationId: string) => {
     `/chat/mark-as-seen/${conversationId}`,
   );
 };
+
+export const getUnreadCount = async () => {
+  return await serverFetch.get<ApiResponse<number>>('/chat/unread-count');
+};

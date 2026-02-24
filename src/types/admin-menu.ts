@@ -6,6 +6,7 @@ export type SubMenu = {
   name: string;
   url: string;
   roles?: UserRole[];
+  badge?: number;
 };
 
 export type MenuItem = {
@@ -14,6 +15,7 @@ export type MenuItem = {
   icon: LucideIcon;
   roles?: UserRole[];
   subMenu?: SubMenu[];
+  badge?: number;
 };
 
 export type MenuGroup = {

@@ -2,14 +2,17 @@
 
 import { adminSidebarMenu } from '@/components/layouts/Admin/admin-menu';
 import DynamicMenu from '@/components/layouts/shared/DynamicMenu';
-import { UserRole } from '@/types/admin-menu';
+
+import { IUser } from '@/types';
 
 interface MenuProps {
-  role?: UserRole | string;
+  user?: IUser;
 }
 
-const Menu = ({ role }: MenuProps) => {
-  return <DynamicMenu menuGroups={adminSidebarMenu} role={role} />;
+const Menu = ({ user }: MenuProps) => {
+  return (
+    <DynamicMenu menuGroups={adminSidebarMenu} role={user?.role} user={user} />
+  );
 };
 
 export default Menu;

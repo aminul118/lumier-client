@@ -1,40 +1,56 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
 
 const SOCKET_URL = (
   process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000/api/v1'
 ).replace('/api/v1', '');
 
+let socketInstance: Socket | null = null;
+
+export const getSocket = () => {
+  if (!socketInstance) {
+    socketInstance = io(SOCKET_URL, {
+      autoConnect: true,
+      reconnection: true,
+    });
+  }
+  return socketInstance;
+};
+
 export const useSocket = (
   eventHandler?: (data: any) => void,
   userId?: string,
-  eventName: string = 'order-status-updated',
+  eventName: string = 'new-notification',
+  rooms: string[] = [],
 ) => {
-  const socketRef = useRef<Socket | null>(null);
-
   useEffect(() => {
-    // Initialize socket connection
-    socketRef.current = io(SOCKET_URL);
+    const socket = getSocket();
 
-    socketRef.current.on('connect', () => {
+    const handleConnect = () => {
       console.log('Connected to socket server');
-
-      // Join user room if userId is provided
       if (userId) {
-        socketRef.current?.emit('join-room', `user_${userId}`);
+        socket.emit('join-user-room', userId);
       }
-    });
+      rooms.forEach((room) => socket.emit('join-room', room));
+    };
+
+    if (socket.connected) {
+      handleConnect();
+    }
+
+    socket.on('connect', handleConnect);
 
     if (eventHandler) {
-      socketRef.current.on(eventName, eventHandler);
+      socket.on(eventName, eventHandler);
     }
 
     return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
+      socket.off('connect', handleConnect);
+      if (eventHandler) {
+        socket.off(eventName, eventHandler);
       }
     };
-  }, [eventHandler, userId]);
+  }, [eventHandler, userId, eventName, JSON.stringify(rooms)]);
 
-  return socketRef.current;
+  return socketInstance;
 };

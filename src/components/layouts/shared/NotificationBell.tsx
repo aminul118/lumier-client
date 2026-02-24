@@ -48,9 +48,18 @@ const NotificationBell = ({ user }: Props) => {
     [fetchNotifications],
   );
 
-  // Listen for general order updates (for all relevant events)
-  useSocket(handleSocketNotification, user?._id || user?.userId);
-  useSocket(handleSocketNotification, undefined, 'new-order-placed');
+  // Listen for all notifications globally
+  useSocket(
+    handleSocketNotification,
+    user?._id || user?.userId,
+    'new-notification',
+    user?.role === 'ADMIN' ? ['admins'] : [],
+  );
+  useSocket(
+    handleSocketNotification,
+    user?._id || user?.userId,
+    'newNotification',
+  );
   useSocket(handleSocketNotification, undefined, 'order-status-updated');
 
   const handleMarkAsRead = async (id: string) => {

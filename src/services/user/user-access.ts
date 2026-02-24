@@ -15,13 +15,13 @@ const authRoutes = [
 
 // COMMON protected routes (all logged-in users)
 const commonProtectedRoutes: RouteConfig = {
-  exact: ['/my-profile', '/settings'],
-  patterns: [/^\/password(\/|$)/], // optional password routes
+  exact: ['/my-profile'],
+  patterns: [/^\/settings(\/|$)/, /^\/password(\/|$)/],
 };
 
 // SUPER_ADMIN only routes
 const superAdminProtectedRoutes: RouteConfig = {
-  patterns: [/^\/doctor(\/|$)/, /^\/assistants(\/|$)/, /^\/appointments(\/|$)/],
+  patterns: [],
   exact: [],
 };
 
@@ -50,27 +50,32 @@ const isRouteMatches = (pathname: string, routes: RouteConfig): boolean => {
 const getRouteOwner = (
   pathname: string,
 ): 'ADMIN' | 'SUPER_ADMIN' | 'COMMON' | 'USER' | null => {
-  // SUPER_ADMIN first
-  if (isRouteMatches(pathname, superAdminProtectedRoutes)) return 'SUPER_ADMIN';
+  // Check specific roles first
   if (isRouteMatches(pathname, adminProtectedRoutes)) return 'ADMIN';
   if (isRouteMatches(pathname, userProtectedRoutes)) return 'USER';
+  if (isRouteMatches(pathname, superAdminProtectedRoutes)) return 'SUPER_ADMIN';
   if (isRouteMatches(pathname, commonProtectedRoutes)) return 'COMMON';
   return null; // public route
 };
 
 // Default dashboard per role
 const getDefaultDashboardRoute = (role: UserRole): string => {
-  if (role === 'ADMIN') return '/admin';
-  if (role === 'SUPER_ADMIN') return '/admin';
+  if (role === 'ADMIN' || role === 'SUPER_ADMIN') return '/admin';
   if (role === 'USER') return '/user';
   return '/';
 };
 
 // Check if role can access path
 const isValidRedirectForRole = (path: string, role: UserRole): boolean => {
-  if (role === 'SUPER_ADMIN') return true;
   const owner = getRouteOwner(path);
   if (owner === null || owner === 'COMMON') return true;
+
+  // SUPER_ADMIN & ADMIN can access ADMIN routes
+  if (role === 'SUPER_ADMIN' || role === 'ADMIN') {
+    return owner === 'ADMIN' || owner === 'SUPER_ADMIN';
+  }
+
+  // USER can only access USER routes
   return owner === role;
 };
 

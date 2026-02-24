@@ -9,7 +9,7 @@ export interface INotification {
   user?: string;
   title: string;
   message: string;
-  type: 'Order' | 'System' | 'Payment';
+  type: 'Order' | 'System' | 'Payment' | 'Chat';
   isRead: boolean;
   orderId?: string;
   createdAt: string;

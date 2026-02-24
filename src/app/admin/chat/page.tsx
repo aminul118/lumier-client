@@ -1,5 +1,6 @@
 'use client';
 
+import { getSocket, useSocket } from '@/hooks/useSocket';
 import { cn } from '@/lib/utils';
 import {
   getMessages,
@@ -16,12 +17,7 @@ import {
   Send,
 } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
-
-const SOCKET_URL = (
-  process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000/api/v1'
-).replace('/api/v1', '');
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function AdminChatPage() {
   const [admin, setAdmin] = useState<any>(null);
@@ -32,7 +28,6 @@ export default function AdminChatPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -41,20 +36,14 @@ export default function AdminChatPage() {
       fetchConversations();
     };
     init();
+  }, []);
 
-    socketRef.current = io(SOCKET_URL);
-    const socket = socketRef.current;
-
-    socket.on('connect', () => {
-      socket.emit('join-user-room', admin?._id);
-      socket.emit('join-room', 'admins');
-    });
-
-    socket.on('receive-message', (data) => {
+  const handleReceiveMessage = useCallback(
+    (data: any) => {
       // If message is for currently active chat
       if (activeChat && data.conversationId === activeChat._id) {
         setMessages((prev) => [...prev, data]);
-        socket.emit('message-seen', {
+        getSocket().emit('message-seen', {
           conversationId: activeChat._id,
           userId: admin?._id,
         });
@@ -73,19 +62,22 @@ export default function AdminChatPage() {
           ),
         );
       }
-    });
+    },
+    [activeChat?._id, admin?._id],
+  );
 
-    socket.on('new-user-message', (data) => {
-      // If it's a new conversation not in list
-      setConversations((prev) => {
-        if (!prev.find((c) => c._id === data.conversationId)) {
-          fetchConversations();
-        }
-        return prev;
-      });
+  const handleNewUserMessage = useCallback((data: any) => {
+    // If it's a new conversation not in list
+    setConversations((prev) => {
+      if (!prev.find((c) => c._id === data.conversationId)) {
+        fetchConversations();
+      }
+      return prev;
     });
+  }, []);
 
-    socket.on('messages-marked-seen', (data) => {
+  const handleMessagesMarkedSeen = useCallback(
+    (data: any) => {
       if (activeChat?._id === data.conversationId) {
         setMessages((prev) =>
           prev.map((msg) =>
@@ -98,19 +90,22 @@ export default function AdminChatPage() {
           c._id === data.conversationId ? { ...c, unreadCount: 0 } : c,
         ),
       );
-    });
+    },
+    [activeChat?._id],
+  );
 
-    return () => {
-      socket.disconnect();
-    };
-  }, [activeChat?._id, admin?._id]);
+  useSocket(handleReceiveMessage, admin?._id, 'receive-message', ['admins']);
+  useSocket(handleNewUserMessage, admin?._id, 'new-user-message', ['admins']);
+  useSocket(handleMessagesMarkedSeen, admin?._id, 'messages-marked-seen', [
+    'admins',
+  ]);
 
   useEffect(() => {
     if (activeChat) {
       fetchMessages(activeChat._id);
-      socketRef.current?.emit('join-room', activeChat._id);
+      getSocket().emit('join-room', activeChat._id);
       if (admin) {
-        socketRef.current?.emit('message-seen', {
+        getSocket().emit('message-seen', {
           conversationId: activeChat._id,
           userId: admin._id,
         });
@@ -159,7 +154,7 @@ export default function AdminChatPage() {
     };
 
     setMessages((prev) => [...prev, newMessage]);
-    socketRef.current?.emit('send-message', newMessage);
+    getSocket().emit('send-message', newMessage);
     setMessage('');
   };
 

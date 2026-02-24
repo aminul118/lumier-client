@@ -1,5 +1,6 @@
 'use client';
 
+import { getSocket, useSocket } from '@/hooks/useSocket';
 import { cn } from '@/lib/utils';
 import {
   getMessages,
@@ -9,8 +10,7 @@ import {
 import { IUser } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, CheckCheck, MessageCircle, Send, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface ChatFloatingButtonProps {
   user: IUser | null;
@@ -25,8 +25,8 @@ const ChatFloatingButton = ({ user }: ChatFloatingButtonProps) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
   const [conversation, setConversation] = useState<any>(null);
+  const [unreadCount, setUnreadCount] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -45,34 +45,27 @@ const ChatFloatingButton = ({ user }: ChatFloatingButtonProps) => {
     if (isOpen) {
       initChat();
     }
+  }, [user, isOpen]);
 
-    // Initialize socket once
-    if (!socketRef.current) {
-      socketRef.current = io(SOCKET_URL);
-    }
-
-    const socket = socketRef.current;
-
-    socket.on('connect', () => {
-      // Join private room
-      socket.emit('join-user-room', user._id);
-      // If we already have a conversation, join it on reconnect
-      if (conversation?._id) {
-        socket.emit('join-room', conversation._id);
-      }
-    });
-
-    socket.on('receive-message', (data) => {
+  const handleReceiveMessage = useCallback(
+    (data: any) => {
       setMessages((prev) => [...prev, data]);
-      if (isOpen && conversation?._id) {
-        socket.emit('message-seen', {
+      if (isOpen && conversation?._id && user?._id) {
+        getSocket().emit('message-seen', {
           conversationId: conversation._id,
           userId: user._id,
         });
+      } else {
+        // Increment unread count if chat is closed or not for this conversation
+        setUnreadCount((prev) => prev + 1);
       }
-    });
+    },
+    [isOpen, conversation?._id, user?._id],
+  );
 
-    socket.on('messages-marked-seen', (data) => {
+  const handleMessagesMarkedSeen = useCallback(
+    (data: any) => {
+      if (!user?._id) return;
       setMessages((prev) =>
         prev.map((msg) =>
           msg.conversationId === data.conversationId && msg.sender !== user._id
@@ -80,25 +73,29 @@ const ChatFloatingButton = ({ user }: ChatFloatingButtonProps) => {
             : msg,
         ),
       );
-    });
+    },
+    [user?._id],
+  );
 
-    return () => {
-      // Keep socket alive but cleanup listeners if needed
-      socket.off('receive-message');
-      socket.off('messages-marked-seen');
-    };
-  }, [user, isOpen, conversation?._id]);
+  useSocket(handleReceiveMessage, user?._id, 'receive-message');
+  useSocket(handleMessagesMarkedSeen, user?._id, 'messages-marked-seen');
 
   useEffect(() => {
-    if (isOpen && conversation?._id && user) {
-      socketRef.current?.emit('join-room', conversation._id);
-      socketRef.current?.emit('message-seen', {
+    if (conversation) {
+      setUnreadCount(conversation.unreadCount || 0);
+    }
+  }, [conversation]);
+
+  useEffect(() => {
+    if (isOpen && conversation?._id && user?._id) {
+      getSocket().emit('join-room', conversation._id);
+      getSocket().emit('message-seen', {
         conversationId: conversation._id,
         userId: user._id,
       });
       markAsSeen(conversation._id); // Backup API call
     }
-  }, [isOpen, conversation?._id, user]);
+  }, [isOpen, conversation?._id, user?._id]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -126,7 +123,7 @@ const ChatFloatingButton = ({ user }: ChatFloatingButtonProps) => {
     setMessage('');
 
     // Send via socket
-    socketRef.current?.emit('send-message', newMessage);
+    getSocket().emit('send-message', newMessage);
   };
 
   if (!user) return null;
@@ -255,8 +252,13 @@ const ChatFloatingButton = ({ user }: ChatFloatingButtonProps) => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-blue-600/40 active:scale-95"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-all hover:scale-110 hover:shadow-blue-600/40 active:scale-95"
       >
+        {unreadCount > 0 && !isOpen && (
+          <span className="absolute -top-1 -right-1 flex h-6 w-6 animate-bounce items-center justify-center rounded-full border-2 border-white bg-red-500 text-[10px] font-bold text-white dark:border-black">
+            {unreadCount > 9 ? '9+' : unreadCount}
+          </span>
+        )}
         {isOpen ? (
           <X size={24} />
         ) : (

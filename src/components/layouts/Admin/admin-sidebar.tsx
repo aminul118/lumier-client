@@ -2,15 +2,13 @@ import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar';
-import { getMe } from '@/services/user/users';
+import { IUser } from '@/types';
 import Link from 'next/link';
 import Logo from '../../../assets/Logo';
 import Menu from './Menu';
-import { IUser } from '@/types';
 
 const AdminSidebar = ({ user }: { user: IUser }) => {
   return (
@@ -24,7 +22,7 @@ const AdminSidebar = ({ user }: { user: IUser }) => {
       <Separator />
       <SidebarContent>
         {/* Sidebar Menu — passes user role for dynamic filtering */}
-        <Menu role={user?.role} />
+        <Menu user={user} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

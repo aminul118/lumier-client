@@ -1,0 +1,687 @@
+$ next build
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env.production
+- Experiments (use with caution):
+  ✓ authInterrupts
+  · serverActions
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.8s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/46) ...
+Fetch Error: Error: Dynamic server usage: Route /user/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__716f12eb._.js:3:4142) {
+  description: "Route /user/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /settings/appearance couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__3c5269b7._.js:3:7848) {
+  description: "Route /settings/appearance couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /track-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /track-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /track-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /track-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /settings/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__3c5269b7._.js:3:7848) {
+  description: "Route /settings/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__716f12eb._.js:3:4142) {
+  description: "Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at k (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__f583149a._.js:1:3632) {
+  description: "Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_9c202669._.js:1:3860)
+    at k (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__f583149a._.js:1:3667) {
+  description: "Route /user couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/categories/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/categories/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /settings/password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__3c5269b7._.js:3:7848) {
+  description: "Route /settings/password couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /settings/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__3c5269b7._.js:3:7848) {
+  description: "Route /settings/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /settings/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at e (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__5cfabbb4._.js:1:1633) {
+  description: "Route /settings/profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/categories couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/categories couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/chat couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /user/orders couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__716f12eb._.js:3:4142) {
+  description: "Route /user/orders couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/colors couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/colors couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /blog couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /blog couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+  Generating static pages using 15 workers (11/46) 
+Fetch Error: Error: Dynamic server usage: Route /blog couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /blog couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /cart couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /cart couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /cart couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /cart couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /checkout couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /checkout couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /checkout couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /checkout couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /contact couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/coupons couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/coupons couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/hero-banners/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/hero-banners/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /emi couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /emi couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /emi couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /emi couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/hero-banners couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/hero-banners couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/mini-banners couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/mini-banners couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/mini-banners/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/mini-banners/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+  Generating static pages using 15 workers (22/46) 
+Fetch Error: Error: Dynamic server usage: Route /admin/orders couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/orders couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/navbar/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/navbar/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /gift couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /gift couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /gift couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /gift couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /location couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /location couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /location couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /location couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/navbar couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/navbar couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /my-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /my-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /my-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /my-profile couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_f4c85e9b._.js:1:6329)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__7e86cbd3._.js:1:5985) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at k (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_f4c85e9b._.js:1:6921)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__7e86cbd3._.js:1:6038) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /pre-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /pre-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /pre-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /pre-order couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /privacy-policy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /privacy-policy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /privacy-policy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /privacy-policy couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /terms-conditions couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13768) {
+  description: "Route /terms-conditions couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /terms-conditions couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:1899)
+    at A (C:\Projects\e-comerce\client\.next\server\chunks\ssr\src_4c0d0d6e._.js:1:13819) {
+  description: "Route /terms-conditions couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+  Generating static pages using 15 workers (34/46) 
+Fetch Error: Error: Dynamic server usage: Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_7f123740._.js:1:4213)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__a2ddbbb7._.js:1:2735) {
+  description: "Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at h (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_ba381f0a._.js:1:4199)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__a2ddbbb7._.js:1:2755) {
+  description: "Route /admin/products/create couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Fetch Error: Error: Dynamic server usage: Route /admin/products couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at n (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:62302)
+    at g (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:73861)
+    at j (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75011)
+    at l (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75119)
+    at Object.get (C:\Projects\e-comerce\client\.next\server\chunks\ssr\_b8e2ce08._.js:2:75612)
+    at f (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__9faad258._.js:1:381)
+    at i (C:\Projects\e-comerce\client\.next\server\chunks\ssr\[root-of-the-server]__2605f436._.js:3:4151) {
+  description: "Route /admin/products couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+✓ Generating static pages using 15 workers (46/46) in 1288.4ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /[...slug]
+├ ƒ /admin
+├ ƒ /admin/categories
+├ ƒ /admin/categories/[categoryId]/edit
+├ ƒ /admin/categories/create
+├ ƒ /admin/chat
+├ ƒ /admin/colors
+├ ƒ /admin/colors/[colorId]/edit
+├ ƒ /admin/coupons
+├ ƒ /admin/hero-banners
+├ ƒ /admin/hero-banners/[bannerId]/edit
+├ ƒ /admin/hero-banners/create
+├ ƒ /admin/mini-banners
+├ ƒ /admin/mini-banners/[bannerId]/edit
+├ ƒ /admin/mini-banners/create
+├ ƒ /admin/navbar
+├ ƒ /admin/navbar/[navbarId]/edit
+├ ƒ /admin/navbar/create
+├ ƒ /admin/orders
+├ ƒ /admin/orders/[orderId]
+├ ƒ /admin/products
+├ ƒ /admin/products/[productId]
+├ ƒ /admin/products/[productId]/edit
+├ ƒ /admin/products/create
+├ ƒ /admin/users
+├ ƒ /blog
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /contact
+├ ƒ /emi
+├ ○ /forgot-password
+├ ƒ /gift
+├ ƒ /location
+├ ○ /login
+├ ○ /manifest.webmanifest
+├ ƒ /my-profile
+├ ƒ /pre-order
+├ ƒ /privacy-policy
+├ ƒ /products/[slug]
+├ ○ /register
+├ ƒ /reset-password
+├ ○ /robots.txt
+├ ƒ /settings/appearance
+├ ƒ /settings/chat
+├ ƒ /settings/password
+├ ƒ /settings/profile
+├ ƒ /shop
+├ ○ /sitemap.xml
+├ ƒ /terms-conditions
+├ ƒ /track-order
+├ ƒ /user
+├ ƒ /user/chat
+├ ƒ /user/orders
+└ ○ /verify
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
