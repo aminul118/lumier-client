@@ -54,9 +54,7 @@ const Stats = ({ stats }: StatsProps) => {
               <Banknote className="h-4 w-4 text-emerald-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">
-                ${totalRevenue.toLocaleString()}
-              </div>
+              ৳{totalRevenue.toLocaleString()}
               <p className="text-muted-foreground mt-1 text-xs">
                 Total income from orders
               </p>
@@ -72,7 +70,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">
-                ${totalProfit.toLocaleString()}
+                ৳{totalProfit.toLocaleString()}
               </div>
               <p className="text-muted-foreground mt-1 text-xs">
                 Revenue - Cost of Goods
@@ -89,7 +87,7 @@ const Stats = ({ stats }: StatsProps) => {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">
-                ${totalStockValue.toLocaleString()}
+                ৳{totalStockValue.toLocaleString()}
               </div>
               <p className="text-muted-foreground mt-1 text-xs">
                 Asset value of stock
