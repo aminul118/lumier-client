@@ -33,7 +33,7 @@ const RootLayout = async ({ children }: Children) => {
         navItems={sortedNavItems as any}
         logoUrl={siteSettings?.logo}
       />
-      <div className="grow pt-[60px] lg:pt-[156px]">{children}</div>
+      <div className="grow pt-[60px] lg:pt-[176px]">{children}</div>
       <ChatFloatingButton user={user as any} />
       <MobileBottomNav />
       <Footer

@@ -191,21 +191,100 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
     <TransitionContext.Provider value={{ startTransition, isPending }}>
       <div
         className={cn(
-          'bg-background mt-12 min-h-screen pb-20 transition-opacity',
+          'bg-background min-h-screen pb-20 transition-opacity',
           isPending && 'pointer-events-none opacity-50',
         )}
       >
         <div className="container mx-auto px-4">
-          <div className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row">
+          <div className="mb-10 flex flex-col items-end justify-between gap-6 md:flex-row">
             <div>
-              <h1 className="text-foreground mb-2 text-4xl font-bold">
+              <h1 className="text-foreground mb-1 text-4xl font-bold">
                 {selectedCategory !== 'All'
                   ? `${selectedCategory} ${selectedSubCategory} ${selectedType}`.trim()
                   : 'Lumiere Shop'}
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Discover excellence ({meta?.total || 0} items)
               </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="hidden items-center gap-2 lg:flex">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    'h-10 w-10 rounded-xl p-0',
+                    viewMode === 'grid'
+                      ? 'bg-muted text-foreground'
+                      : 'text-muted-foreground hover:bg-muted/50',
+                  )}
+                  onClick={() => updateURL({ view: 'grid' })}
+                >
+                  <LayoutGrid size={18} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    'h-10 w-10 rounded-xl p-0',
+                    viewMode === 'list'
+                      ? 'bg-muted text-foreground'
+                      : 'text-muted-foreground hover:bg-muted/50',
+                  )}
+                  onClick={() => updateURL({ view: 'list' })}
+                >
+                  <List size={18} />
+                </Button>
+              </div>
+
+              <div className="bg-border/50 mx-1 hidden h-6 w-px lg:block" />
+
+              <div className="flex items-center gap-3">
+                <Button
+                  onClick={() => setIsSidebarOpen(true)}
+                  variant="outline"
+                  className="rounded-xl border-dashed lg:hidden"
+                >
+                  <SlidersHorizontal size={14} className="mr-2" />
+                  Filters
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-muted-foreground hover:text-foreground h-10 rounded-xl border-dashed px-4 text-xs font-bold tracking-widest uppercase"
+                  onClick={() => {
+                    router.push('/shop');
+                    setLocalSearch('');
+                  }}
+                >
+                  <FilterX size={14} className="mr-2" />
+                  Clear
+                </Button>
+
+                <Select
+                  value={sortBy}
+                  onValueChange={(value) => updateURL({ sort: value })}
+                >
+                  <SelectTrigger className="bg-card border-border/50 h-10 w-[160px] rounded-xl font-bold shadow-sm">
+                    <SelectValue placeholder="Sort by" />
+                  </SelectTrigger>
+                  <SelectContent className="border-border/50 rounded-xl shadow-2xl">
+                    <SelectItem value="Newest" className="font-medium">
+                      Newest First
+                    </SelectItem>
+                    <SelectItem value="price" className="font-medium">
+                      Price: Low-High
+                    </SelectItem>
+                    <SelectItem value="-price" className="font-medium">
+                      Price: High-Low
+                    </SelectItem>
+                    <SelectItem value="-rating" className="font-medium">
+                      Top Rated
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
 
@@ -362,78 +441,6 @@ const ShopContent = ({ initialFilters }: ShopContentProps) => {
                 </div>
               ) : (
                 <>
-                  <div className="border-border mb-8 flex items-center justify-between border-b pb-8">
-                    <div className="flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          'rounded-md',
-                          viewMode === 'grid'
-                            ? 'bg-muted text-foreground'
-                            : 'text-muted-foreground',
-                        )}
-                        onClick={() => updateURL({ view: 'grid' })}
-                      >
-                        <LayoutGrid size={18} />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          'rounded-md',
-                          viewMode === 'list'
-                            ? 'bg-muted text-foreground'
-                            : 'text-muted-foreground',
-                        )}
-                        onClick={() => updateURL({ view: 'list' })}
-                      >
-                        <List size={18} />
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <Button
-                        onClick={() => setIsSidebarOpen(true)}
-                        className="lg:hidden"
-                      >
-                        <SlidersHorizontal size={14} />
-                        Filters
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          router.push('/shop');
-                          setLocalSearch('');
-                        }}
-                      >
-                        <FilterX size={14} />
-                        Clear
-                      </Button>
-                      <div className="hidden items-center gap-2 sm:flex">
-                        <span className="text-muted-foreground text-xs font-bold tracking-widest uppercase">
-                          Sort By
-                        </span>
-                      </div>
-                      <Select
-                        value={sortBy}
-                        onValueChange={(value) => updateURL({ sort: value })}
-                      >
-                        <SelectTrigger className="bg-card h-10 w-[160px] rounded-xl font-bold">
-                          <SelectValue placeholder="Sort by" />
-                        </SelectTrigger>
-                        <SelectContent className="rounded-xl">
-                          <SelectItem value="Newest">Newest</SelectItem>
-                          <SelectItem value="price">Price: Low-High</SelectItem>
-                          <SelectItem value="-price">
-                            Price: High-Low
-                          </SelectItem>
-                          <SelectItem value="-rating">Top Rated</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
                   {allProducts.length > 0 ? (
                     <div
                       className={cn(

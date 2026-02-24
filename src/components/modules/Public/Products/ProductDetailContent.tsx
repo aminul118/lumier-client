@@ -1,276 +1,342 @@
 'use client';
 
-import { useCart } from '@/context/CartContext';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ShoppingCart, Star, Heart, Share2, Check } from 'lucide-react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { toast } from 'sonner';
-import { useState, useEffect } from 'react';
-import { IProduct } from '@/services/product/product';
 import HtmlContent from '@/components/rich-text/core/html-content';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useCart } from '@/context/CartContext';
+import { IProduct } from '@/services/product/product';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Check, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import ReviewSection from './Reviews/ReviewSection';
 
 interface ProductDetailContentProps {
-    product: IProduct;
+  product: IProduct;
 }
 
 const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
-    const { addToCart } = useCart();
-    const [selectedColor, setSelectedColor] = useState(product.color);
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const [isWishlisted, setIsWishlisted] = useState(false);
+  const router = useRouter();
+  const { addToCart } = useCart();
+  const [selectedColor, setSelectedColor] = useState(product.color);
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
-    const handleAddToCart = () => {
-        addToCart(product as any);
-        toast.success(`${product.name} added to cart!`, {
-            description: 'Check your cart to proceed to checkout.',
-            icon: <ShoppingCart className="h-4 w-4 text-blue-500" />,
-        });
-    };
+  const handleAddToCart = (shouldRedirect = false) => {
+    addToCart(product as any);
+    if (shouldRedirect) {
+      router.push('/checkout');
+    } else {
+      toast.success(`${product.name} added to cart!`, {
+        description: 'Check your cart to proceed to checkout.',
+        icon: <ShoppingCart className="h-4 w-4 text-blue-500" />,
+      });
+    }
+  };
 
-    // Get images
-    const allImages = Array.from(new Set([product.image, ...(product.images || [])])).filter(Boolean) as string[];
-    const [selectedImage, setSelectedImage] = useState(allImages[0] || product.image);
+  // Get images
+  const allImages = Array.from(
+    new Set([product.image, ...(product.images || [])]),
+  ).filter(Boolean) as string[];
+  const [selectedImage, setSelectedImage] = useState(
+    allImages[0] || product.image,
+  );
 
-    // Update selected image when color changes (not applicable anymore for specific images, but keeping logic for general use if needed)
-    useEffect(() => {
-        setSelectedImage(allImages[0] || product.image);
-    }, [product.image, product.images]);
+  // Update selected image when color changes (not applicable anymore for specific images, but keeping logic for general use if needed)
+  useEffect(() => {
+    setSelectedImage(allImages[0] || product.image);
+  }, [product.image, product.images]);
 
-    // Stock for product
-    const currentStock = product.stock;
+  // Stock for product
+  const currentStock = product.stock;
 
-    return (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            {/* Image Section */}
-            <div className="lg:col-span-7 space-y-4">
-                {/* Main image viewer */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-border/50 bg-secondary/30 backdrop-blur-sm group"
-                >
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={selectedImage}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="absolute inset-0"
-                        >
-                            <Image
-                                src={selectedImage}
-                                alt={product.name}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                priority
-                            />
-                        </motion.div>
-                    </AnimatePresence>
+  return (
+    <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
+      {/* Image Section */}
+      <div className="space-y-4 lg:col-span-7">
+        {/* Main image viewer */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="border-border/50 bg-secondary/30 group relative aspect-square overflow-hidden rounded-4xl border backdrop-blur-sm md:aspect-4/5"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedImage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={selectedImage}
+                alt={product.name}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
 
-                    {/* Floating Badges */}
-                    {product.salePrice && product.salePrice > 0 && (
-                        <div className="absolute top-6 left-6 z-10">
-                            <Badge className="bg-red-500 text-white border-none px-4 py-1.5 rounded-full text-sm font-black shadow-xl shadow-red-500/30">
-                                {Math.round((1 - product.salePrice / product.price) * 100)}% OFF
-                            </Badge>
-                        </div>
-                    )}
+          {/* Floating Badges */}
+          {product.salePrice && product.salePrice > 0 && (
+            <div className="absolute top-6 left-6 z-10">
+              <Badge className="rounded-full border-none bg-red-500 px-4 py-1.5 text-sm font-black text-white shadow-xl shadow-red-500/30">
+                {Math.round((1 - product.salePrice / product.price) * 100)}% OFF
+              </Badge>
+            </div>
+          )}
 
-                    {/* Image counter */}
-                    {allImages.length > 1 && (
-                        <div className="absolute bottom-4 right-4 z-10 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
-                            {allImages.indexOf(selectedImage) + 1} / {allImages.length}
-                        </div>
-                    )}
-                </motion.div>
+          {/* Image counter */}
+          {allImages.length > 1 && (
+            <div className="absolute right-4 bottom-4 z-10 rounded-full bg-black/60 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-sm">
+              {allImages.indexOf(selectedImage) + 1} / {allImages.length}
+            </div>
+          )}
+        </motion.div>
 
-                {/* Thumbnail strip — only shown when multiple images exist */}
-                {allImages.length > 1 && (
-                    <div className="flex gap-4 overflow-x-auto py-4 px-2 scrollbar-none snap-x">
-                        {allImages.map((img, idx) => (
-                            <button
-                                key={img + idx}
-                                type="button"
-                                onClick={() => setSelectedImage(img)}
-                                className={`relative shrink-0 w-20 h-24 md:w-24 md:h-28 rounded-2xl overflow-hidden border-2 transition-all duration-300 snap-start shadow-sm ${selectedImage === img
-                                    ? 'border-blue-500 ring-4 ring-blue-500/10 scale-105 shadow-blue-500/20'
-                                    : 'border-border/40 hover:border-blue-500/30 opacity-60 hover:opacity-100 hover:scale-[1.02]'
-                                    }`}
-                            >
-                                <Image
-                                    src={img}
-                                    alt={`View ${idx + 1}`}
-                                    fill
-                                    className="object-cover"
-                                />
-                                {selectedImage === img && (
-                                    <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-[1px]" />
-                                )}
-                            </button>
-                        ))}
-                    </div>
+        {/* Thumbnail strip — only shown when multiple images exist */}
+        {allImages.length > 1 && (
+          <div className="scrollbar-none flex snap-x gap-4 overflow-x-auto px-2 py-4">
+            {allImages.map((img, idx) => (
+              <button
+                key={img + idx}
+                type="button"
+                onClick={() => setSelectedImage(img)}
+                className={`relative h-24 w-20 shrink-0 snap-start overflow-hidden rounded-2xl border-2 shadow-sm transition-all duration-300 md:h-28 md:w-24 ${
+                  selectedImage === img
+                    ? 'scale-105 border-blue-500 ring-4 shadow-blue-500/20 ring-blue-500/10'
+                    : 'border-border/40 opacity-60 hover:scale-[1.02] hover:border-blue-500/30 hover:opacity-100'
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`View ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                />
+                {selectedImage === img && (
+                  <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-[1px]" />
                 )}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Content Section */}
+      <div className="flex flex-col pt-4 lg:col-span-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="space-y-8"
+        >
+          {/* Brand & Stats */}
+          <div className="flex items-center justify-between">
+            <Badge
+              variant="outline"
+              className="rounded-full border-blue-500/30 px-4 py-1 text-xs font-bold tracking-widest text-blue-500 uppercase"
+            >
+              Premium {product.category}
+            </Badge>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsWishlisted(!isWishlisted)}
+                className={`border-border/50 hover:bg-muted rounded-full border p-2.5 transition-all ${isWishlisted ? 'bg-red-50 text-red-500' : 'text-muted-foreground'}`}
+              >
+                <Heart
+                  size={20}
+                  fill={isWishlisted ? 'currentColor' : 'none'}
+                />
+              </button>
+              <button className="border-border/50 text-muted-foreground hover:bg-muted rounded-full border p-2.5 transition-all">
+                <Share2 size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Title & Price */}
+          <div>
+            <h1 className="text-foreground mb-6 text-4xl leading-[1.1] font-black tracking-tight capitalize md:text-5xl lg:text-6xl">
+              {product.name}
+            </h1>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={18}
+                    fill={
+                      i < Math.floor(product.rating) ? 'currentColor' : 'none'
+                    }
+                  />
+                ))}
+              </div>
+              <span className="text-muted-foreground text-sm font-bold">
+                ({product.rating} Rating)
+              </span>
             </div>
 
-            {/* Content Section */}
-            <div className="lg:col-span-5 flex flex-col pt-4">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="space-y-8"
-                >
-                    {/* Brand & Stats */}
-                    <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="border-blue-500/30 text-blue-500 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
-                            Premium {product.category}
-                        </Badge>
-                        <div className="flex items-center gap-4">
-                            <button
-                                onClick={() => setIsWishlisted(!isWishlisted)}
-                                className={`p-2.5 rounded-full border border-border/50 transition-all hover:bg-muted ${isWishlisted ? 'text-red-500 bg-red-50' : 'text-muted-foreground'}`}
-                            >
-                                <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
-                            </button>
-                            <button className="p-2.5 rounded-full border border-border/50 text-muted-foreground hover:bg-muted transition-all">
-                                <Share2 size={20} />
-                            </button>
-                        </div>
-                    </div>
+            <div className="flex items-center gap-6">
+              {product.salePrice && product.salePrice > 0 ? (
+                <div className="flex items-center gap-4">
+                  <span className="text-5xl font-black tracking-tighter text-blue-500">
+                    ৳{product.salePrice.toFixed(2)}
+                  </span>
+                  <span className="text-muted-foreground/40 text-2xl font-medium italic line-through">
+                    ৳{product.price.toFixed(2)}
+                  </span>
+                </div>
+              ) : (
+                <p className="text-foreground text-5xl font-black tracking-tighter">
+                  ৳{product.price.toFixed(2)}
+                </p>
+              )}
+            </div>
+          </div>
 
-                    {/* Title & Price */}
-                    <div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight capitalize leading-[1.1]">
-                            {product.name}
-                        </h1>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="flex text-amber-500">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} size={18} fill={i < Math.floor(product.rating) ? "currentColor" : "none"} />
-                                ))}
-                            </div>
-                            <span className="text-sm font-bold text-muted-foreground">({product.rating} Rating)</span>
-                        </div>
+          <div className="from-border/50 via-border h-px bg-linear-to-r to-transparent" />
 
-                        <div className="flex items-center gap-6">
-                            {product.salePrice && product.salePrice > 0 ? (
-                                <div className="flex items-center gap-4">
-                                    <span className="text-5xl font-black text-blue-500 tracking-tighter">৳{product.salePrice.toFixed(2)}</span>
-                                    <span className="text-2xl text-muted-foreground/40 line-through font-medium italic">৳{product.price.toFixed(2)}</span>
-                                </div>
-                            ) : (
-                                <p className="text-5xl font-black text-foreground tracking-tighter">৳{product.price.toFixed(2)}</p>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="h-px bg-gradient-to-r from-border/50 via-border to-transparent" />
-
-                    {/* Selection Controls */}
-                    <div className="space-y-8">
-                        {/* Size Selection */}
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-foreground font-black text-sm uppercase tracking-widest">Select Size</h3>
-                                <button className="text-blue-500 text-xs font-bold hover:underline">Size Guide</button>
-                            </div>
-                            <div className="flex flex-wrap gap-2.5">
-                                {product.sizes.map((size) => (
-                                    <button
-                                        key={size}
-                                        onClick={() => setSelectedSize(size)}
-                                        className={`min-w-[4rem] px-5 py-3 rounded-2xl border font-black transition-all duration-300 ${selectedSize === size
-                                            ? 'bg-foreground text-background border-foreground shadow-lg scale-105'
-                                            : 'border-border/50 bg-muted/30 text-muted-foreground hover:border-foreground/30'
-                                            }`}
-                                    >
-                                        {size}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Color Display */}
-                        <div className="space-y-4">
-                            <h3 className="text-foreground font-black text-sm uppercase tracking-widest">Color: <span className="text-muted-foreground">{product.color}</span></h3>
-                            <div className="flex gap-4">
-                                <div
-                                    className="relative w-12 h-12 rounded-full border-2 border-blue-500 scale-110 shadow-lg p-1"
-                                >
-                                    <div
-                                        className="w-full h-full rounded-full border border-border/50"
-                                        style={{ backgroundColor: product.color.toLowerCase().replace('silk ', '') }}
-                                    />
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        <Check className={`h-4 w-4 ${['white', 'beige', 'silk white', 'gold'].includes(product.color.toLowerCase()) ? 'text-black' : 'text-white'}`} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* CTA Section */}
-                    <div className="flex flex-col gap-4 pt-6">
-                        <Button
-                            onClick={handleAddToCart}
-                            disabled={currentStock < 1}
-                            size="lg"
-                            className="w-full rounded-3xl py-8 text-xl font-black bg-blue-600 hover:bg-blue-700 text-white shadow-2xl shadow-blue-500/30 transition-all active:scale-[0.98] disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
-                        >
-                            {currentStock < 1 ? 'Out of Stock' : 'Add to Cart'} <ShoppingCart className="ml-3 h-6 w-6" />
-                        </Button>
-                        <div className="flex items-center justify-center gap-8 py-4">
-                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-tighter text-muted-foreground">
-                                <div className={`w-1.5 h-1.5 rounded-full ${currentStock > 0 ? 'bg-emerald-500' : 'bg-red-500'}`} />
-                                {currentStock > 0
-                                    ? (currentStock < 10 ? `Only ${currentStock} Left!` : 'In Stock')
-                                    : 'Out of Stock'}
-                            </div>
-                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-tighter text-muted-foreground">
-                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                                24h Shipping
-                            </div>
-                            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-tighter text-muted-foreground">
-                                <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                                30 Day Return
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Descriptions Section */}
-                    <div className="space-y-10 pt-8 border-t border-border/50">
-                        <div>
-                            <h3 className="text-foreground font-black mb-4 text-xs uppercase tracking-[0.2em]">The Narrative</h3>
-                            <HtmlContent
-                                content={product.description}
-                                className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground/80 leading-relaxed font-medium text-base"
-                            />
-                        </div>
-
-                        {product.details && (
-                            <div>
-                                <h3 className="text-foreground font-black mb-4 text-xs uppercase tracking-[0.2em]">Artisanal Details</h3>
-                                <HtmlContent
-                                    content={Array.isArray(product.details) ? product.details.join('\n') : product.details}
-                                    className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground/80 leading-relaxed font-medium"
-                                />
-                            </div>
-                        )}
-                    </div>
-                </motion.div>
+          {/* Selection Controls */}
+          <div className="space-y-8">
+            {/* Size Selection */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-foreground text-sm font-black tracking-widest uppercase">
+                  Select Size
+                </h3>
+                <button className="text-xs font-bold text-blue-500 hover:underline">
+                  Size Guide
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {product.sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`min-w-16 rounded-2xl border px-5 py-3 font-black transition-all duration-300 ${
+                      selectedSize === size
+                        ? 'bg-foreground text-background border-foreground scale-105 shadow-lg'
+                        : 'border-border/50 bg-muted/30 text-muted-foreground hover:border-foreground/30'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Full Width Review Section */}
-            <div className="lg:col-span-12 mt-20">
-                <ReviewSection productId={product._id as string} />
+            {/* Color Display */}
+            <div className="space-y-4">
+              <h3 className="text-foreground text-sm font-black tracking-widest uppercase">
+                Color:{' '}
+                <span className="text-muted-foreground">{product.color}</span>
+              </h3>
+              <div className="flex gap-4">
+                <div className="relative h-12 w-12 scale-110 rounded-full border-2 border-blue-500 p-1 shadow-lg">
+                  <div
+                    className="border-border/50 h-full w-full rounded-full border"
+                    style={{
+                      backgroundColor: product.color
+                        .toLowerCase()
+                        .replace('silk ', ''),
+                    }}
+                  />
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                    <Check
+                      className={`h-4 w-4 ${['white', 'beige', 'silk white', 'gold'].includes(product.color.toLowerCase()) ? 'text-black' : 'text-white'}`}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    );
+          </div>
+
+          {/* CTA Section */}
+          <div className="flex flex-col gap-4 pt-6">
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <Button
+                onClick={() => handleAddToCart(false)}
+                disabled={currentStock < 1}
+                size="lg"
+                variant="outline"
+                className="disabled:border-muted disabled:text-muted-foreground flex-1 rounded-3xl border-2 border-blue-600 py-8 text-xl font-black text-blue-600 transition-all hover:bg-blue-50 active:scale-[0.98]"
+              >
+                Add to Cart <ShoppingCart className="ml-3 h-6 w-6" />
+              </Button>
+              <Button
+                onClick={() => handleAddToCart(true)}
+                disabled={currentStock < 1}
+                size="lg"
+                className="disabled:bg-muted disabled:text-muted-foreground flex-1 rounded-3xl bg-blue-600 py-8 text-xl font-black text-white shadow-xl shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.98] disabled:shadow-none"
+              >
+                {currentStock < 1 ? 'Out of Stock' : 'Buy Now'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-center gap-8 py-4">
+              <div className="text-muted-foreground flex items-center gap-2 text-[10px] font-black tracking-tighter uppercase">
+                <div
+                  className={`h-1.5 w-1.5 rounded-full ${currentStock > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}
+                />
+                {currentStock > 0
+                  ? currentStock < 10
+                    ? `Only ${currentStock} Left!`
+                    : 'In Stock'
+                  : 'Out of Stock'}
+              </div>
+              <div className="text-muted-foreground flex items-center gap-2 text-[10px] font-black tracking-tighter uppercase">
+                <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                24h Shipping
+              </div>
+              <div className="text-muted-foreground flex items-center gap-2 text-[10px] font-black tracking-tighter uppercase">
+                <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                30 Day Return
+              </div>
+            </div>
+          </div>
+
+          {/* Descriptions Section */}
+          <div className="border-border/50 space-y-10 border-t pt-8">
+            <div>
+              <h3 className="text-foreground mb-4 text-xs font-black tracking-[0.2em] uppercase">
+                The Narrative
+              </h3>
+              <HtmlContent
+                content={product.description}
+                className="prose prose-sm dark:prose-invert text-muted-foreground/80 max-w-none text-base leading-relaxed font-medium"
+              />
+            </div>
+
+            {product.details && (
+              <div>
+                <h3 className="text-foreground mb-4 text-xs font-black tracking-[0.2em] uppercase">
+                  Artisanal Details
+                </h3>
+                <HtmlContent
+                  content={
+                    Array.isArray(product.details)
+                      ? product.details.join('\n')
+                      : product.details
+                  }
+                  className="prose prose-sm dark:prose-invert text-muted-foreground/80 max-w-none leading-relaxed font-medium"
+                />
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Full Width Review Section */}
+      <div className="mt-20 lg:col-span-12">
+        <ReviewSection productId={product._id as string} />
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetailContent;
