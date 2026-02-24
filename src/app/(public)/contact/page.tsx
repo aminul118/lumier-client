@@ -14,10 +14,10 @@ export default ContactPage;
 
 //  SEO Metatag
 export const metadata: Metadata = generateMetaTags({
-  title: 'Contact Me | Hire Full Stack Developer Md. Aminul Islam',
+  title: 'Contact Us | Lumiere Fashion',
   description:
-    'Get in touch with Md. Aminul Islam for web development projects, collaborations, or inquiries. Available for freelance and full-time opportunities in MERN stack and Next.js.',
+    'Get in touch with Lumiere Fashion for any inquiries, project collaborations, or support. We are here to help you with your modern apparel needs.',
   keywords:
-    'Contact Aminul Islam, Hire Full Stack Developer, Web Developer for Hire, Freelance React Developer, Next.js Expert, Contact Web Developer, Software Engineer Contact, Dhaka, Bangladesh',
+    'Contact Lumiere Fashion, Customer Support, Fashion Brand Contact, Dhaka Apparel, Clothing Store Contact',
   websitePath: '/contact',
 });

@@ -2,6 +2,7 @@
 
 import AminulLogo from '@/components/common/AminulLogo';
 import { Button } from '@/components/ui/button';
+import { toUrlSlug } from '@/lib/url-slugs';
 import { cn } from '@/lib/utils';
 import { IUser } from '@/types';
 import {
@@ -97,6 +98,8 @@ const Navbar = ({
 
 const Mobile = ({ navItems, setMenuOpen }: MobileProps) => {
   const pathname = usePathname();
+  const pathSegments = pathname.split('/').filter(Boolean);
+  const currentCategorySlug = pathSegments[0];
 
   return (
     <motion.div
@@ -119,7 +122,10 @@ const Mobile = ({ navItems, setMenuOpen }: MobileProps) => {
 
         <div className="flex flex-1 flex-col gap-1 overflow-y-auto">
           {navItems.map(({ title, href }) => {
-            const isActive = pathname === href;
+            const categorySlug = toUrlSlug(title);
+            const isCategoryActive = currentCategorySlug === categorySlug;
+            const isActive = pathname === href || isCategoryActive;
+
             return (
               <Link
                 key={title}

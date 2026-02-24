@@ -1,9 +1,7 @@
 import AminulLogo from '@/components/common/AminulLogo';
-import FooterThemeToggle from './FooterThemeToggle';
 import SocialLinks from '@/components/modules/Public/Home/SocialLinks';
 import Link from 'next/link';
-import { FiMapPin, FiPhone } from 'react-icons/fi';
-import { HiOutlineMail } from 'react-icons/hi';
+import ThemeToggle from './ThemeToggle';
 
 const quickLinks = [
   { title: 'Shop All', href: '/shop' },
@@ -33,15 +31,16 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 pt-16 pb-8">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="lg:col-span-1">
             <div className="mb-4">
               <AminulLogo />
             </div>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-slate-400">
-              Lumiere Fashion - Discover the latest trends in high-quality apparel.
-              Elevate your style with our curated collections of modern clothing.
+              Lumiere Fashion - Discover the latest trends in high-quality
+              apparel. Elevate your style with our curated collections of modern
+              clothing.
             </p>
 
             {/* Social Icons */}
@@ -87,38 +86,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="mb-5 text-sm font-semibold tracking-wider text-white uppercase">
-              Get in Touch
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="mailto:mr.aminul118@gmail.com"
-                  className="group flex items-start gap-3 text-sm text-slate-400 transition-colors duration-300 hover:text-blue-400"
-                >
-                  <HiOutlineMail className="mt-0.5 shrink-0 text-base text-blue-400/70" />
-                  <span>mr.aminul118@gmail.com</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://wa.me/8801781082064"
-                  target="_blank"
-                  className="group flex items-start gap-3 text-sm text-slate-400 transition-colors duration-300 hover:text-blue-400"
-                >
-                  <FiPhone className="mt-0.5 shrink-0 text-base text-blue-400/70" />
-                  <span>+880 1781-082064</span>
-                </Link>
-              </li>
-              <li className="flex items-start gap-3 text-sm text-slate-400">
-                <FiMapPin className="mt-0.5 shrink-0 text-base text-blue-400/70" />
-                <span>Dhaka, Bangladesh</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Divider */}
@@ -131,13 +98,15 @@ const Footer = () => {
             <span className="text-slate-400">Lumiere Fashion</span>. All rights
             reserved.
           </p>
-          <FooterThemeToggle />
+
+          <ThemeToggle />
+
           <p className="hidden items-center gap-1.5 text-xs text-slate-500 lg:flex">
-            Crafted with
-            <span className="inline-block animate-pulse text-red-400">♥</span>
+            Delevoped by
+            <Link href="https://github.com/aminul-dev">
+              <span className="font-medium text-slate-400">Aminul Islam</span>
+            </Link>
             using
-            <span className="font-medium text-slate-400">Next.js</span>&
-            <span className="font-medium text-slate-400">TypeScript</span>
           </p>
         </div>
       </div>

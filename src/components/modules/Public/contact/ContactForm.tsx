@@ -5,7 +5,6 @@ import SubmitButton from '@/components/common/button/submit-button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -57,18 +56,14 @@ const ContactForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white/60">Name</FormLabel>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="John Doe"
                     autoComplete="name"
-                    className="border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:border-blue-500/50 focus-visible:ring-blue-500/20"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="sr-only">
-                  Your full name
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -80,19 +75,15 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white/60">Email</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="john@company.com"
                     autoComplete="email"
-                    className="border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:border-blue-500/50 focus-visible:ring-blue-500/20"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="sr-only">
-                  Your email address
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -105,17 +96,10 @@ const ContactForm = () => {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white/60">Subject</FormLabel>
+              <FormLabel>Subject</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Discuss about project"
-                  className="border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:border-blue-500/50 focus-visible:ring-blue-500/20"
-                  {...field}
-                />
+                <Input placeholder="Order Inquiry" {...field} />
               </FormControl>
-              <FormDescription className="sr-only">
-                Message topic
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -127,17 +111,14 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white/60">Message</FormLabel>
+              <FormLabel>Message</FormLabel>
               <FormControl>
                 <Textarea
-                  className="h-36 border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:border-blue-500/50 focus-visible:ring-blue-500/20"
+                  className="h-36"
                   placeholder="Write your message here..."
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="sr-only">
-                Full message
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

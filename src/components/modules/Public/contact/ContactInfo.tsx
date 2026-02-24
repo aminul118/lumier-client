@@ -4,23 +4,23 @@ const contactDetails = [
   {
     icon: Phone,
     title: 'Phone',
-    value: '+880 17810 820 64',
-    href: 'tel:+8801781082064',
+    value: '01633501122',
+    href: 'tel:01633501122',
     color: 'text-green-500',
     bg: 'bg-green-500/10',
   },
   {
     icon: Mail,
     title: 'Email',
-    value: 'mr.aminul118@gmail.com',
-    href: 'mailto:mr.aminul118@gmail.com',
+    value: 'support@lumierefash.com',
+    href: 'mailto:support@lumierefash.com',
     color: 'text-blue-500',
     bg: 'bg-blue-500/10',
   },
   {
     icon: MapPin,
-    title: 'Location',
-    value: 'Dhaka, Bangladesh',
+    title: 'Headquarters',
+    value: 'Banani, Dhaka, Bangladesh',
     href: null,
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
@@ -31,20 +31,20 @@ const ContactInfo = () => {
   return (
     <div className="flex h-full max-w-xl flex-col justify-center">
       <div className="space-y-6">
-        <h3 className="text-3xl font-bold text-white">
-          Let's create something amazing together.
+        <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+          Contact Our Team
         </h3>
-        <p className="text-white/60">
-          I'm currently available for freelance work and full-time positions. If
-          you have a project that needs some creative touch, I'd love to hear
-          about it.
+        <p className="text-gray-500 dark:text-white/60">
+          Have questions about our products or your order? We're here to help.
+          Reach out to us through any of the channels below or fill out the
+          form.
         </p>
 
         <div className="mt-8 space-y-4">
           {contactDetails.map((item, index) => (
             <div
               key={index}
-              className="group flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-4 transition-all hover:border-white/10 hover:bg-white/10"
+              className="group flex items-center gap-4 rounded-xl border border-gray-100 bg-gray-50 p-4 transition-all hover:border-blue-500/20 hover:bg-white dark:border-white/5 dark:bg-white/5 dark:hover:border-white/10 dark:hover:bg-white/10"
             >
               <div
                 className={`flex h-12 w-12 items-center justify-center rounded-lg ${item.bg}`}
@@ -52,18 +52,20 @@ const ContactInfo = () => {
                 <item.icon className={`h-6 w-6 ${item.color}`} />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-white/40">
+                <span className="text-xs font-bold tracking-widest text-gray-400 uppercase dark:text-white/40">
                   {item.title}
                 </span>
                 {item.href ? (
                   <a
                     href={item.href}
-                    className="font-medium text-white transition-colors hover:text-blue-400"
+                    className="font-bold text-gray-900 transition-colors hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
                   >
                     {item.value}
                   </a>
                 ) : (
-                  <span className="font-medium text-white">{item.value}</span>
+                  <span className="font-bold text-gray-900 dark:text-white">
+                    {item.value}
+                  </span>
                 )}
               </div>
             </div>
