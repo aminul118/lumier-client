@@ -5,12 +5,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { IProduct } from '@/services/product/product';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Check, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'sonner';
+import ProductImageGallery from './ProductImageGallery';
 import ReviewSection from './Reviews/ReviewSection';
 
 interface ProductDetailContentProps {
@@ -20,7 +20,6 @@ interface ProductDetailContentProps {
 const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
   const router = useRouter();
   const { addToCart } = useCart();
-  const [selectedColor, setSelectedColor] = useState(product.color);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -36,18 +35,10 @@ const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
     }
   };
 
-  // Get images
+  // Build the image list: primary image first, then any extra images (deduped)
   const allImages = Array.from(
     new Set([product.image, ...(product.images || [])]),
   ).filter(Boolean) as string[];
-  const [selectedImage, setSelectedImage] = useState(
-    allImages[0] || product.image,
-  );
-
-  // Update selected image when color changes (not applicable anymore for specific images, but keeping logic for general use if needed)
-  useEffect(() => {
-    setSelectedImage(allImages[0] || product.image);
-  }, [product.image, product.images]);
 
   // Stock for product
   const currentStock = product.stock;
@@ -55,77 +46,18 @@ const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
   return (
     <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
       {/* Image Section */}
-      <div className="space-y-4 lg:col-span-7">
-        {/* Main image viewer */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="border-border/50 bg-secondary/30 group relative aspect-square overflow-hidden rounded-4xl border backdrop-blur-sm md:aspect-4/5"
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedImage}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={selectedImage}
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                priority
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Floating Badges */}
-          {product.salePrice && product.salePrice > 0 && (
-            <div className="absolute top-6 left-6 z-10">
+      <div className="lg:col-span-7">
+        <ProductImageGallery
+          images={allImages}
+          productName={product.name}
+          saleBadge={
+            product.salePrice && product.salePrice > 0 ? (
               <Badge className="rounded-full border-none bg-red-500 px-4 py-1.5 text-sm font-black text-white shadow-xl shadow-red-500/30">
                 {Math.round((1 - product.salePrice / product.price) * 100)}% OFF
               </Badge>
-            </div>
-          )}
-
-          {/* Image counter */}
-          {allImages.length > 1 && (
-            <div className="absolute right-4 bottom-4 z-10 rounded-full bg-black/60 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-sm">
-              {allImages.indexOf(selectedImage) + 1} / {allImages.length}
-            </div>
-          )}
-        </motion.div>
-
-        {/* Thumbnail strip — only shown when multiple images exist */}
-        {allImages.length > 1 && (
-          <div className="scrollbar-none flex snap-x gap-4 overflow-x-auto px-2 py-4">
-            {allImages.map((img, idx) => (
-              <button
-                key={img + idx}
-                type="button"
-                onClick={() => setSelectedImage(img)}
-                className={`relative h-24 w-20 shrink-0 snap-start overflow-hidden rounded-2xl border-2 shadow-sm transition-all duration-300 md:h-28 md:w-24 ${
-                  selectedImage === img
-                    ? 'scale-105 border-blue-500 ring-4 shadow-blue-500/20 ring-blue-500/10'
-                    : 'border-border/40 opacity-60 hover:scale-[1.02] hover:border-blue-500/30 hover:opacity-100'
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt={`View ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
-                {selectedImage === img && (
-                  <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-[1px]" />
-                )}
-              </button>
-            ))}
-          </div>
-        )}
+            ) : undefined
+          }
+        />
       </div>
 
       {/* Content Section */}
