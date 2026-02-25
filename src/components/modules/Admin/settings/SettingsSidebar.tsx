@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { settingNavigationMenu } from './settingNavigationMenu';
 
-import { IUser } from '@/types';
+import { IUser, Role } from '@/types';
 
 const SettingsSidebar = ({
   basePath = '/admin/settings',
@@ -19,7 +19,7 @@ const SettingsSidebar = ({
   const filteredMenu = settingNavigationMenu.filter((item) => {
     if (!item.roles) return true;
     if (!user) return false;
-    return (item.roles as string[]).includes(user.role);
+    return item.roles.includes(user.role as Role);
   });
 
   return (

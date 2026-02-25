@@ -1,6 +1,16 @@
-import { Lock, Palette, User } from 'lucide-react';
+import { Role } from '@/types';
+import { Lock, LucideIcon, Palette, User } from 'lucide-react';
 
-const settingNavigationMenu = [
+export interface SettingMenuItem {
+  id: string;
+  label: string;
+  href: string;
+  icon: LucideIcon;
+  description: string;
+  roles?: Role[];
+}
+
+const settingNavigationMenu: SettingMenuItem[] = [
   {
     id: 'profile',
     label: 'Profile',

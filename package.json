@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prod": "npm run build && vercel --prod",
+    "prod": "next build && vercel --prod",
     "lint": "next lint",
     "prepare": "husky",
     "prettier:check": "npx prettier . --check",

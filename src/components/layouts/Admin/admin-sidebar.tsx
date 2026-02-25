@@ -9,13 +9,13 @@ import {
 import { IUser } from '@/types';
 import Menu from './Menu';
 
-const AdminSidebar = ({ user }: { user: IUser }) => {
+const AdminSidebar = ({ user, logoUrl }: { user: IUser; logoUrl?: string }) => {
   return (
     <Sidebar collapsible="icon" className="bg-black! text-white!">
       {/* Header */}
       <SidebarHeader>
         <div className="flex items-center gap-2 px-4 py-4">
-          <Logo className="origin-left scale-90" />
+          <Logo className="origin-left scale-90" logoUrl={logoUrl} />
         </div>
       </SidebarHeader>
       <Separator className="bg-white/10" />

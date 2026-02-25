@@ -13,6 +13,7 @@ const CartPage = () => {
     updateQuantity,
     subtotal,
     discount,
+    discountPercent,
     total,
     couponCode,
     applyCoupon,
@@ -55,6 +56,7 @@ const CartPage = () => {
           <CartSummary
             subtotal={subtotal}
             discount={discount}
+            discountPercent={discountPercent}
             total={total}
             couponCode={couponCode}
             onApplyCoupon={applyCoupon}
