@@ -13,8 +13,10 @@ const AdminHomePage = async () => {
   const user = userRes?.data;
 
   return (
-    <section className="mx-auto w-11/12 space-y-6">
-      <GradientTitle title={`Welcome ${user?.fullName || 'Admin'}`} />
+    <section className="mx-auto w-full space-y-10 px-4">
+      <GradientTitle
+        title={`Welcome back, ${user?.fullName?.split(' ')[0] || 'Admin'}`}
+      />
       <Stats stats={stats} />
     </section>
   );

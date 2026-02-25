@@ -130,6 +130,7 @@ export interface IStats {
   totalCost: number;
   totalProfit: number;
   totalStockValue: number;
+  totalSaleValue: number;
   lowStockCount: number;
   orderStatusDistribution: {
     Pending: number;
@@ -138,6 +139,17 @@ export interface IStats {
     Delivered: number;
     Cancelled: number;
   };
+  timeBasedOrders: {
+    today: number;
+    last7Days: number;
+    last15Days: number;
+    last30Days: number;
+  };
+  revenueTrend: {
+    date: string;
+    revenue: number;
+    orders: number;
+  }[];
   projectCount: number;
   blogCount: number;
   invoice: {

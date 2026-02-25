@@ -123,9 +123,12 @@ const SiteSettingsForm = ({ settings }: Props) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* Logo Section */}
-        <div className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-6">
-          <h3 className="flex items-center gap-2 text-lg font-medium text-white">
-            <Globe className="h-5 w-5 text-blue-400" /> Branding
+        <div className="space-y-4 rounded-3xl border-none bg-[#151722] p-8 shadow-2xl transition-all hover:scale-[1.01]">
+          <h3 className="flex items-center gap-3 text-xl font-black tracking-tight text-white">
+            <div className="rounded-xl bg-blue-500/10 p-2.5">
+              <Globe className="h-5 w-5 text-blue-400" />
+            </div>
+            Branding
           </h3>
           <FormField
             control={form.control}
@@ -146,9 +149,12 @@ const SiteSettingsForm = ({ settings }: Props) => {
         </div>
 
         {/* SEO Configuration Section */}
-        <div className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-6">
-          <h3 className="flex items-center gap-2 text-lg font-medium text-white">
-            <Globe className="h-5 w-5 text-green-400" /> SEO Configuration
+        <div className="space-y-4 rounded-3xl border-none bg-[#151722] p-8 shadow-2xl transition-all hover:scale-[1.01]">
+          <h3 className="flex items-center gap-3 text-xl font-black tracking-tight text-white">
+            <div className="rounded-xl bg-emerald-500/10 p-2.5">
+              <Globe className="h-5 w-5 text-emerald-400" />
+            </div>
+            SEO Configuration
           </h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
@@ -156,12 +162,13 @@ const SiteSettingsForm = ({ settings }: Props) => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Site Title (SEO)</FormLabel>
+                  <FormLabel className="text-muted-foreground text-xs font-black tracking-widest uppercase">
+                    Site Title (SEO)
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="e.g. Lumiere Fashion | Premium Contemporary Clothing"
                       {...field}
-                      className="bg-slate-900/50"
                     />
                   </FormControl>
                   <FormMessage />
@@ -173,12 +180,13 @@ const SiteSettingsForm = ({ settings }: Props) => {
               name="keywords"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>SEO Keywords</FormLabel>
+                  <FormLabel className="text-muted-foreground text-xs font-black tracking-widest uppercase">
+                    SEO Keywords
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="e.g. Fashion, Luxury, Apparel"
                       {...field}
-                      className="bg-slate-900/50"
                     />
                   </FormControl>
                   <FormMessage />
@@ -191,12 +199,13 @@ const SiteSettingsForm = ({ settings }: Props) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>SEO Description</FormLabel>
+                <FormLabel className="text-muted-foreground text-xs font-black tracking-widest uppercase">
+                  SEO Description
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Enter meta description for search engines..."
                     {...field}
-                    className="bg-slate-900/50"
                   />
                 </FormControl>
                 <FormMessage />
@@ -208,7 +217,9 @@ const SiteSettingsForm = ({ settings }: Props) => {
             name="baseImage"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Social Share Image (OG Image)</FormLabel>
+                <FormLabel className="text-muted-foreground text-xs font-black tracking-widest uppercase">
+                  Social Share Image (OG Image)
+                </FormLabel>
                 <FormControl>
                   <SingleImageUploader
                     defaultValue={field.value}
@@ -222,9 +233,12 @@ const SiteSettingsForm = ({ settings }: Props) => {
         </div>
 
         {/* Social Links Section */}
-        <div className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-6">
-          <h3 className="flex items-center gap-2 text-lg font-medium text-white">
-            <Globe className="h-5 w-5 text-purple-400" /> Social Media Links
+        <div className="space-y-4 rounded-3xl border-none p-8 shadow-2xl transition-all hover:scale-[1.01]">
+          <h3 className="flex items-center gap-3 text-xl font-black tracking-tight text-white">
+            <div className="rounded-xl bg-purple-500/10 p-2.5">
+              <Globe className="h-5 w-5 text-purple-400" />
+            </div>
+            Social Media Links
           </h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {form.getValues('socialLinks').map((link, index) => {
@@ -232,10 +246,10 @@ const SiteSettingsForm = ({ settings }: Props) => {
               return (
                 <div
                   key={link.platform}
-                  className="space-y-3 rounded-lg border border-white/5 bg-white/5 p-4"
+                  className="space-y-4 rounded-2xl p-6 transition-colors"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm font-medium text-slate-300">
+                    <div className="text-muted-foreground flex items-center gap-2 text-sm font-black tracking-wider uppercase">
                       <Icon className="h-4 w-4" /> {link.platform}
                     </div>
                     <FormField
@@ -263,7 +277,6 @@ const SiteSettingsForm = ({ settings }: Props) => {
                           <Input
                             placeholder={`https://${link.platform.toLowerCase()}.com/...`}
                             {...field}
-                            className="bg-slate-900/50"
                           />
                         </FormControl>
                         <FormMessage />

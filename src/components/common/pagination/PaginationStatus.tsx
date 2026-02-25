@@ -12,9 +12,9 @@ interface PaginationStatusProps {
 const PaginationStatus = ({ meta, className }: PaginationStatusProps) => {
   const searchParams = useSearchParams();
 
-  // Always cast query params to numbers
-  const limit = Number(searchParams.get('limit') || 10);
-  const page = Number(searchParams.get('page') || 1);
+  // Always cast query params to numbers, prioritize meta values
+  const limit = meta.limit || Number(searchParams.get('limit') || 10);
+  const page = meta.page || Number(searchParams.get('page') || 1);
 
   // Calculate item ranges
   const start = (page - 1) * limit + 1;

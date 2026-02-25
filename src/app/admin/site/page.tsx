@@ -1,4 +1,5 @@
 import SiteSettingsForm from '@/components/modules/Admin/site/SiteSettingsForm';
+import GradientTitle from '@/components/ui/gradientTitle';
 import { getSiteSettings } from '@/services/settings/settings';
 import { Metadata } from 'next';
 
@@ -9,11 +10,14 @@ const SiteSettingsPage = async () => {
   const settings = res?.data;
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-xl">
-        {settings && <SiteSettingsForm settings={settings} />}
-      </div>
-    </div>
+    <section className="mx-auto w-full space-y-10 px-4 pb-20">
+      <GradientTitle
+        title="Site Configuration"
+        description="Global settings for your e-commerce platform"
+        className="text-left"
+      />
+      {settings && <SiteSettingsForm settings={settings} />}
+    </section>
   );
 };
 
