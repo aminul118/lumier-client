@@ -2,6 +2,7 @@ import ProductCard from '@/components/common/ProductCard';
 import { Button } from '@/components/ui/button';
 import { getProducts } from '@/services/product/product';
 import Link from 'next/link';
+import AnimatedSection from './AnimatedSection';
 
 const FeaturedProducts = async () => {
   const { data } = await getProducts({ featured: 'true' });
@@ -12,7 +13,7 @@ const FeaturedProducts = async () => {
   return (
     <section className="bg-muted/50 py-24">
       <div className="container mx-auto px-4">
-        <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+        <AnimatedSection className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div>
             <h2 className="text-foreground mb-4 text-3xl font-bold md:text-4xl">
               Featured Excellence
@@ -28,7 +29,7 @@ const FeaturedProducts = async () => {
           >
             <Link href="/shop">View All Products</Link>
           </Button>
-        </div>
+        </AnimatedSection>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {featuredItems.map((product, index) => (

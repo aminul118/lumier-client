@@ -3,6 +3,7 @@ import ProductCard from '@/components/common/ProductCard';
 import { Button } from '@/components/ui/button';
 import { getBestSellingProducts } from '@/services/product/product';
 import Link from 'next/link';
+import AnimatedSection from './AnimatedSection';
 
 const BestSellingProducts = async () => {
   const { data: products = [] } = await getBestSellingProducts();
@@ -12,7 +13,7 @@ const BestSellingProducts = async () => {
   return (
     <section className="bg-secondary/30 border-border/50 border-y py-24 backdrop-blur-3xl">
       <div className="container mx-auto px-4">
-        <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+        <AnimatedSection className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div>
             <div className="text-primary mb-2 flex items-center gap-3">
               <div className="bg-primary h-0.5 w-12 rounded-full" />
@@ -34,7 +35,7 @@ const BestSellingProducts = async () => {
           >
             <Link href="/shop?sort=-soldCount">Explore Collection</Link>
           </Button>
-        </div>
+        </AnimatedSection>
 
         <Grid cols={4} className="gap-x-8 gap-y-12">
           {products.map((product, index) => (

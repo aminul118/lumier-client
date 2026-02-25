@@ -1,11 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { getTopRatedProducts } from '@/services/product/product';
 import Link from 'next/link';
+import AnimatedSection from './AnimatedSection';
 import TopRatedSwiper from './TopRatedSwiper';
-
-// We'll use a client-side wrapper for Swiper if we really need a carousel,
-// but for maximum speed, a grid is better. Or we can create a separate client-side swiper wrapper.
-// Let's create a client wrapper for Swiper to keep the animation.
 
 const TopRatedProducts = async () => {
   const { data: products = [] } = await getTopRatedProducts();
@@ -15,7 +12,7 @@ const TopRatedProducts = async () => {
   return (
     <section className="bg-background py-24">
       <div className="container mx-auto px-4">
-        <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+        <AnimatedSection className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div>
             <h2 className="text-foreground mb-4 text-3xl font-black tracking-tighter md:text-5xl">
               The <span className="text-primary">Highest</span> Rating
@@ -31,9 +28,11 @@ const TopRatedProducts = async () => {
           >
             <Link href="/shop?sort=-rating">View All Ranked</Link>
           </Button>
-        </div>
+        </AnimatedSection>
 
-        <TopRatedSwiper products={products} />
+        <AnimatedSection delay={0.2}>
+          <TopRatedSwiper products={products} />
+        </AnimatedSection>
       </div>
     </section>
   );
