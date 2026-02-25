@@ -46,7 +46,7 @@ const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
   return (
     <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
       {/* Image Section */}
-      <div className="lg:col-span-7">
+      <div className="space-y-12 lg:col-span-5">
         <ProductImageGallery
           images={allImages}
           productName={product.name}
@@ -58,10 +58,27 @@ const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
             ) : undefined
           }
         />
+
+        {/* Artisanal Details Section - Moved here */}
+        {product.details && (
+          <div className="border-border/50 hidden border-t pt-8 lg:block">
+            <h3 className="text-foreground mb-4 text-xs font-black tracking-[0.2em] uppercase">
+              Artisanal Details
+            </h3>
+            <HtmlContent
+              content={
+                Array.isArray(product.details)
+                  ? product.details.join('\n')
+                  : product.details
+              }
+              className="prose prose-sm dark:prose-invert text-muted-foreground/80 max-w-none leading-relaxed font-medium"
+            />
+          </div>
+        )}
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col pt-4 lg:col-span-5">
+      <div className="flex flex-col pt-4 lg:col-span-7">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -244,8 +261,9 @@ const ProductDetailContent = ({ product }: ProductDetailContentProps) => {
               />
             </div>
 
+            {/* Mobile Artisanal Details */}
             {product.details && (
-              <div>
+              <div className="lg:hidden">
                 <h3 className="text-foreground mb-4 text-xs font-black tracking-[0.2em] uppercase">
                   Artisanal Details
                 </h3>

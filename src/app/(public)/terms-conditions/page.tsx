@@ -12,6 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 }
 
+export const dynamic = 'force-dynamic';
+
 const TermsConditionsPage = () => {
   return (
     <div className="bg-background min-h-screen pt-32 pb-20">

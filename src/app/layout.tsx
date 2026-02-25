@@ -14,6 +14,8 @@ import { Toaster } from 'sonner';
 
 import { getSiteSettings } from '@/services/settings/settings';
 
+export const dynamic = 'force-dynamic';
+
 const MainLayout = ({ children }: Children) => {
   return (
     <html lang="en" suppressHydrationWarning>

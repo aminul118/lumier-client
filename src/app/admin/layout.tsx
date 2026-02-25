@@ -7,6 +7,8 @@ import { Children } from '@/types';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const AdminLayout = async ({ children }: Children) => {
   const { data: user } = await getMe();
 

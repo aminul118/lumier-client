@@ -8,6 +8,8 @@ import { getSiteSettings } from '@/services/settings/settings';
 import { getMe } from '@/services/user/users';
 import { Children } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 const RootLayout = async ({ children }: Children) => {
   let user = null;
   try {

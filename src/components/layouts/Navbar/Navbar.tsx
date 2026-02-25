@@ -14,7 +14,7 @@ import { Fade as Hamburger } from 'hamburger-react';
 import { ChevronDown, Clock, ShoppingCart, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, Suspense, useState } from 'react';
 import CategoryBar from './CategoryBar';
 import MainNavbar from './MainNavbar';
 import NavSearch from './NavSearch';
@@ -71,7 +71,11 @@ const Navbar = ({
       <TopBar />
       <div className="hidden lg:block">
         <MainNavbar user={user} logo={logo} />
-        <CategoryBar />
+        <Suspense
+          fallback={<div className="h-14 w-full bg-white dark:bg-[#0a0a0a]" />}
+        >
+          <CategoryBar />
+        </Suspense>
       </div>
 
       {/* Mobile Header */}
