@@ -34,31 +34,6 @@ export const BannerSkeleton = () => (
   </section>
 );
 
-export const CategorySkeleton = () => (
-  <section className="bg-background py-24">
-    <div className="container mx-auto px-4">
-      <div className="mb-16 flex flex-col items-center">
-        <Skeleton className="mb-4 h-10 w-64 rounded-lg" />
-        <Skeleton className="h-1 w-20 rounded-full" />
-      </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="bg-muted/30 relative aspect-3/4 overflow-hidden rounded-2xl"
-          >
-            <div className="absolute right-0 bottom-0 left-0 p-8">
-              <Skeleton className="mb-2 h-8 w-32 rounded" />
-              <Skeleton className="mb-6 h-4 w-full rounded" />
-              <Skeleton className="h-4 w-24 rounded" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
 export const ProductGridSkeleton = ({
   title,
   subtitle,
@@ -120,7 +95,6 @@ export const HomeSkeletons = () => {
   return (
     <div className="space-y-0">
       <BannerSkeleton />
-      <CategorySkeleton />
       <ProductGridSkeleton
         title="Featured Excellence"
         subtitle="Our hand-picked selections for this season"
