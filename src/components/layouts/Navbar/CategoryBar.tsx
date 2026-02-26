@@ -3,40 +3,15 @@
 import { toUrlSlug } from '@/lib/url-slugs';
 import { cn } from '@/lib/utils';
 import { getNavbars, INavItem } from '@/services/navbar/navbar';
-import {
-  ChevronDown,
-  Cpu,
-  Headphones,
-  Laptop,
-  Smartphone,
-  Speaker,
-  Tablet,
-  Tv,
-  Watch,
-} from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-const CATEGORY_ICONS: Record<string, any> = {
-  PHONES: Smartphone,
-  TABLET: Tablet,
-  LAPTOP: Laptop,
-  'SMART WATCH': Watch,
-  GADGET: Cpu,
-  ACCESSORIES: Headphones,
-  SOUNDS: Speaker,
-  'SMART TV': Tv,
-  MEN: Smartphone,
-  WOMEN: Tablet,
-};
 
 const CategoryBar = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [navItems, setNavItems] = useState<INavItem[]>([]);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-
   const pathSegments = pathname.split('/').filter(Boolean);
   const currentCategorySlug = pathSegments[0];
   const currentSubCategorySlug = pathSegments[1];
@@ -62,7 +37,6 @@ const CategoryBar = () => {
           {/* Category Links */}
           <div className="flex items-center">
             {navItems.map((item) => {
-              const Icon = CATEGORY_ICONS[item.title.toUpperCase()] || Cpu;
               const categorySlug = toUrlSlug(item.title);
               const isCategoryActive = currentCategorySlug === categorySlug;
               const hasSubItems = item.subItems && item.subItems.length > 0;
@@ -83,15 +57,6 @@ const CategoryBar = () => {
                         : 'text-gray-600 hover:text-blue-600 dark:text-gray-400',
                     )}
                   >
-                    <Icon
-                      size={14}
-                      className={cn(
-                        'transition-transform group-hover:scale-110',
-                        isCategoryActive || hoveredItem === item._id
-                          ? 'text-blue-600'
-                          : 'text-gray-400 group-hover:text-blue-600',
-                      )}
-                    />
                     <span>{item.title}</span>
                     {hasSubItems && (
                       <ChevronDown
@@ -168,19 +133,6 @@ const CategoryBar = () => {
             })}
           </div>
         </div>
-
-        {/* Online Exclusive Button */}
-        <Link
-          href="/shop?exclusive=true"
-          className={cn(
-            'rounded px-6 py-2 text-[10px] font-black tracking-[0.2em] uppercase transition-colors',
-            pathname === '/shop' && searchParams.get('exclusive') === 'true'
-              ? 'bg-blue-600 text-white'
-              : 'bg-[#111111] text-[#e5d5c5] hover:bg-black',
-          )}
-        >
-          Online Exclusive
-        </Link>
       </div>
     </div>
   );
