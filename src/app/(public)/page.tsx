@@ -1,12 +1,8 @@
 import BestSellingProducts from '@/components/modules/Public/Home/BestSellingProducts';
-import Categories from '@/components/modules/Public/Home/Categories';
 import FeaturedProducts from '@/components/modules/Public/Home/FeaturedProducts';
 import HeroBanner from '@/components/modules/Public/Home/HeroBanner';
 import HomeSEOContent from '@/components/modules/Public/Home/HomeSEOContent';
-import {
-  CategorySkeleton,
-  ProductGridSkeleton,
-} from '@/components/modules/Public/Home/HomeSkeletons';
+import { ProductGridSkeleton } from '@/components/modules/Public/Home/HomeSkeletons';
 import TopRatedProducts from '@/components/modules/Public/Home/TopRatedProducts';
 import generateMetaTags from '@/seo/generateMetaTags';
 import {
@@ -29,9 +25,6 @@ const HomePage = async () => {
         mainSlides={heroBannersRes?.data}
         miniBanners={miniBannersRes?.data}
       />
-      <Suspense fallback={<CategorySkeleton />}>
-        <Categories />
-      </Suspense>
       <Suspense
         fallback={
           <ProductGridSkeleton
